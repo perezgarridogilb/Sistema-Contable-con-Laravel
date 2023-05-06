@@ -1,12 +1,10 @@
-<div class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
+<div wire.ignore.self class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">
-            <b></b>
+          <h5 class="modal-title text-white">
+            <b>{{$componentName}}</b> | {{ $selected_id > 0 'EDITAR' : 'CREAR' }}
           </h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+          <h6 class="text-center text-warning" wire:loading>Por favor espere</h6>
         </div>
         <div class="modal-body">
