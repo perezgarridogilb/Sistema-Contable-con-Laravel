@@ -268,7 +268,7 @@ code {
   list-style: none; }
 
 .header-container .sidebarCollapse {
-  color: #5c1ac3; }
+  color: #000; }
   .header-container .sidebarCollapse svg {
     width: 27px;
     height: 27px; }
@@ -283,7 +283,7 @@ code {
   stroke-width: 1.0px;
   width: 26px;
   height: 26px;
-  color: #5c1ac3; }
+  color: #000; }
 
 .navbar .dropdown-menu {
   border-radius: 6px;

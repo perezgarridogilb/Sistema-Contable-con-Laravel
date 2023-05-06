@@ -15,7 +15,7 @@ body {
   color: #888ea8;
   height: 100%;
   font-size: 0.875rem;
-  background: #f1f2f3;
+  background: #fafafa!important;
   overflow-x: hidden;
   overflow-y: auto;
   letter-spacing: 0.0312rem;
@@ -426,14 +426,10 @@ select.form-control.form-custom {
     width: 40px;
     padding: 8px 8px; }
   .btn:hover, .btn:focus {
-    color: #3b3f5c;
-    background-color: #f1f2f3;
-    border-color: #d3d3d3;
-    -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-    -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-    box-shadow: 0 2px 5px 0 #e0e6ed,0 2px 10px 0 #e0e6ed;
-    -webkit-transform: translateY(-3px);
-    transform: translateY(-3px); }
+    background-color: #0b8499;
+    border-color: 1px solid #0b8499;
+    color: #fff
+}
 
 .btn-group .btn:hover, .btn-group .btn:focus {
   -webkit-transform: none;
@@ -1566,9 +1562,7 @@ input[disabled], select[disabled], textarea[disabled], input[readonly], select[r
   letter-spacing: 1px; }
 
 .table > thead > tr > th {
-  color: #1b55e2;
   font-weight: 700;
-  font-size: 13px;
   letter-spacing: 1px;
   text-transform: uppercase; }
 

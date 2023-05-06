@@ -19,6 +19,19 @@
 
 
 <style>
+    .widget {
+        box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12)!important;
+    }
+
+    a.green {
+        background: #0fadc8;
+    }
+
+    a.green1 {
+        background: #fafafa;
+        border: 2px solid #0fadc8;
+    }
+
     #compactSidebar svg {
         fill: white!important;
     }
@@ -48,7 +61,7 @@
         }
     }
     .sidebar-theme #compactSidebar {
-        background: #191e3a!important;
+        background: #000!important;
     }
     .header-container .sidebar-Collapse{
         color: #3B3F5C!important;

@@ -3,8 +3,7 @@
         <ul class="navbar-item flex-row">
             <li class="nav-item theme-logo">
                 <a href="index.html">
-                    <img src="assets/img/livewire_logo.png" class="navbar-logo" alt="logo">
-                    <b style="font-size: 19px; color: #3b3b5c;">SYSPOS</b>
+                    <img src="assets/img/livewire_logo.png" class="navbar-logo" alt="logo" style="border-radius: 0;">
                 </a>
             </li>
         </ul>
