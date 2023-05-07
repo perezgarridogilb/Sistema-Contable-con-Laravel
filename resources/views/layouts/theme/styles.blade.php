@@ -19,16 +19,29 @@
 
 
 <style>
+    a.tabmenu {
+        padding: 12px 24px;
+    }
+    .table td, .table th, .table tr {
+        border-top: 0!important;
+        border-bottom: 1px solid #dee2e6;
+    }
+    .table {
+        background: #ffffff!important;
+    }
+
     .widget {
         box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12)!important;
     }
 
     a.green {
         background: #0fadc8;
+        padding: 12px 24px;
     }
 
     a.green1 {
         background: #fafafa;
+        padding: 12px 24px;
         border: 2px solid #0fadc8;
     }
 
@@ -68,11 +81,11 @@
     }
     .navbar .navbar-item .nav-item form.form-inline input.search-form-control {
         font-size: 15px;
-        background-color: #3B3F5C!important;
+        background-color: #fff!important;
         padding-right: 40px;
         padding-top: 12px;
         border: none;
-        color: #fff;
+        color: black;
         back-shadow: none;
         border-radius: 30px;
     }

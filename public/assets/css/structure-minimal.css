@@ -267,7 +267,7 @@ code {
   list-style: none; }
 
 .header-container .sidebarCollapse {
-  color: #000; }
+  color: #5c1ac3; }
 
 .navbar-expand-sm .navbar-item .nav-link {
   line-height: 2.75rem;
@@ -598,7 +598,7 @@ code {
   padding-right: 40px;
   padding-top: 12px;
   border: none;
-  color: #3b3f5c;
+  color: #ffffff!important;
   box-shadow: none;
   border-radius: 30px; }
 
