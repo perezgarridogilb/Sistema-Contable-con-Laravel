@@ -12,7 +12,7 @@
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     @include('layouts.theme.styles')
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
-
+    {{-- @livewireStyles --}}
 </head>
 <body class="dashboard-analytics">
 

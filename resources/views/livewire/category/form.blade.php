@@ -18,7 +18,7 @@
         <div class="form-group custom-file">
             <input type="file" class="custom-file-input form-control" wire:model="image" accept="image/x-png, image/gif, image/jpeg">
             <label class="custom-file-label">Image {{ $image }}</label>
-            @error('image') <span class="text-danger er">{{ $message }}</span> @enderror
+            
         </div>
     </div>
 </div>

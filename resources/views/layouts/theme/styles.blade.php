@@ -36,6 +36,7 @@
 
     a.green {
         background: #0fadc8;
+        color: #fafafa;
         padding: 12px 24px;
     }
 
