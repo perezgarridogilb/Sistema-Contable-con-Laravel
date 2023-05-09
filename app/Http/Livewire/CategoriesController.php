@@ -82,6 +82,46 @@ class CategoriesController extends Component
 
     }
 
+    public function Update() {
+        $rules = [
+            'name' => "required|min:3|unique:categories,name,{$this->selected_id}",
+        ];
+
+        $messages = [
+            'name.required' => 'Nombre de categoría requerido',
+            'name.min' => 'El nombre de la categoría debe tener al menos 3 carácteres',
+            'name.unique' => 'El nombre de la categoría ya existe'
+        ];
+
+        $this->validate($rules, $messages);
+
+        $category = Category::find($this->selected_id);
+        $category->update([
+            'name' => $this->name
+        ]);
+
+        if($this->image)
+        {
+            $customFileName = uniqid() . '-.' . $this->image->extension();
+            $this->image->storeAs('public/categorias', $customFileName);
+            $imageName = $category->image;
+
+            $category->image = $customFileName;
+            $category->save();
+
+            if($imageName != null) {
+                if(file_exists('storage/categorias' . $imageName)){
+                    unlink('storage/categorias' . $imageName);
+                }
+            }
+
+            $this->resetUI();
+            $this->emit('category-updated', 'Categoría actualizada');
+            
+        }
+
+    }
+
     public function resetUI() {
         $this->name = '';
         $this->image = null;
