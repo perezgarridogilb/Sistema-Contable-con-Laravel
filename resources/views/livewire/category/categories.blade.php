@@ -76,6 +76,12 @@
             $('#theModal').modal('hide');
             noty(msg)
         })
+
+        window.livewire.on('category-deleted-error', msg => {
+            $('#theModal').modal('hide');
+            noty(msg)
+        })
+
         window.livewire.on('hide-modal', msg => {
             $('#theModal').modal('hide');
         })
@@ -89,8 +95,8 @@
 
 function Confirm(id) {
     swal({
-        title: 'CONFIRMAR',
-        text: '¿CONFIRMAS ELIMINAR EL REGISTRO',
+        title: 'Confirmar',
+        text: '¿Desea corfirmar eliminar el registro?',
         type: 'warning',
         showCancelButton: true,
         cancelButtonText: 'Cerrar',

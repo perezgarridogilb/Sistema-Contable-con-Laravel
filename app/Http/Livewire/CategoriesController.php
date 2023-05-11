@@ -19,7 +19,7 @@ class CategoriesController extends Component
     public function mount()
     {
         $this->pageTitle = 'Listado';
-        $this->componentName = 'Categorias';
+        $this->componentName = 'categorias';
 
     }
 
@@ -114,12 +114,12 @@ class CategoriesController extends Component
                     unlink('storage/categorias' . $imageName);
                 }
             }
-
-            $this->resetUI();
-            $this->emit('category-updated', 'Categoría actualizada');
             
         }
-
+        
+                    $this->resetUI();
+                    $this->emit('category-updated', 'Categoría actualizada');
+        
     }
 
     public function resetUI() {
@@ -127,5 +127,27 @@ class CategoriesController extends Component
         $this->image = null;
         $this->searchTerm = '';
         $this->selected_id = 0;
+    }
+
+    protected $listeners = [
+        'deleteRow' => 'Destroy'
+    ];
+
+    public function Destroy(Category $category) {
+        /* $category = Category::find($id); */
+        $imageName = $category->image; //imagen temporal
+        $category->delete();
+
+        try {
+            if ($imageName != null) {
+                /** Si existe la imagen se elimina */
+                unlink('storage/categorias/' . $imageName);
+            }
+        } catch (\Exception $e) {
+            $this->emit('category-deleted-error', 'Ocurrió un error al eliminar la imagen');
+        }
+
+        $this->resetUI();
+        $this->emit('category-deleted', 'Categoría eliminada');
     }
 }

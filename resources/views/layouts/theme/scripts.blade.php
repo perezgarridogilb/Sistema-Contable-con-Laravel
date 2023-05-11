@@ -18,8 +18,11 @@
     function noty(msg, option = 1)
     {
         Snackbar.show({
-            text: msg.toUpperCase(),
-            actionText: 'CERRAR',
+            text: (() => {
+            let capitalized = msg.charAt(0).toUpperCase() + msg.slice(1);
+            return capitalized;
+            })(),
+            actionText: 'Cerrar',
             actionTextColor: '#fff',
             backgroundColor: option == 1 ? '#3b3f5c' : '#e7515a',
             pos: 'top-right'
