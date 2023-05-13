@@ -30,7 +30,8 @@
                             <td><h6>{{ $category->name }}</h6></td>
                             <td class="text-center">
                                     <span>
-                                        <img src="{{ asset('storage/categorias/' . $category->image) }}" alt="Imagen de la categoría" alt="imagen de ejemplo" height="70" width="80" class="rounded">
+                                        {{-- imagen existe por el Accesor --}}
+                                        <img src="{{ asset('storage/categorias/' . $category->imagen) }}" alt="Imagen de la categoría" alt="imagen de ejemplo" height="70" width="80" class="rounded">
                                     </span>
                             </td>
                             <td class="text-center">
