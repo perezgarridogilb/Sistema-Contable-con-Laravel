@@ -31,8 +31,6 @@
                     </thead>
                     <tbody>
                         @foreach ($data as $product)
-                            
-                        
                         <tr>
                             <td><h6>{{$product->name}}</h6></td>
                             <td><h6>{{$product->barcode}}</h6></td>
@@ -42,7 +40,8 @@
                             <td><h6>{{$product->alerts}}</h6></td>
                             <td class="text-center">
                                 <span>
-                                    <img src="{{ asset('storage/products' .  $product->namen)}}" alt="imagen de ejemplo" height="70" width="80" class="rounded">
+                                    {{-- de image a imagen, ya que es accessor --}}
+                                    <img src="{{ asset('storage/products' .  $product->imagen)}}" alt="imagen de ejemplo" height="70" width="80" class="rounded">
                                 </span>
                             </td>
                             <td class="text-center">
@@ -67,11 +66,33 @@
         </div>
     </div>
 
-    Include Form
+    @include('livewire.products.form')
 </div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function (){
+        window.livewire.on('product-added', msg => {
+            $('#theModal').modal('show');
+        });
+        window.livewire.on('product-updated', msg => {
+            $('#theModal').modal('hide');
+            noty(msg)
+        })
+
+        window.livewire.on('product-deleted', msg => {
+            noty(msg)
+        })
+
+        window.livewire.on('modal-show', msg => {
+            $('#theModal').modal('show');
+            noty(msg)
+        })
+        window.livewire.on('modal-hide', msg => {
+            $('#theModal').modal('hide');
+        })
+        window.livewire.on('hidden.bs.modal', msg => {
+            $('.er').css('display', 'none')
+        })
 
     });
 </script>
