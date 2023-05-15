@@ -4,7 +4,7 @@
         <div class="widget widget-chart-one">
             <div class="widget-heading">
                 <h4 class="card-title">
-                    <b>{{ComponentName}} | {{PageTitle}}</b>
+                    <b>{{ $componentName }} | {{ $pageTitle }}</b>
                 </h4>
                 <ul class="tabs tabs-pills">
                     <li>
@@ -19,14 +19,14 @@
                 <table class="table-bordered table striped mt-1">
                     <thead class="text-white" style="background: #3b3f5c;">
                         <tr>
-                            <th class="table-th text-white">DESCRIPCIÓN</th>
-                            <th class="table-th text-white">BARCODE</th>
-                            <th class="table-th text-white">CATEGORÍA</th>
-                            <th class="table-th text-white">PRECIO</th>
-                            <th class="table-th text-white">STOCK</th>
-                            <th class="table-th text-white">INV.MIN</th>
-                            <th class="table-th text-white">IMAGEN</th>
-                            <th class="table-th text-white">ACCIÓN</th>
+                            <th class="table-th text-white text-center">DESCRIPCIÓN</th>
+                            <th class="table-th text-white text-center">BARCODE</th>
+                            <th class="table-th text-white text-center">CATEGORÍA</th>
+                            <th class="table-th text-white text-center">PRECIO</th>
+                            <th class="table-th text-white text-center">STOCK</th>
+                            <th class="table-th text-white text-center">INV.MIN</th>
+                            <th class="table-th text-white text-center">IMAGEN</th>
+                            <th class="table-th text-white text-center">ACCIÓN</th>
                         </tr>
                     </thead>
                     <tbody>

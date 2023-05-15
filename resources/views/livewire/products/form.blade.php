@@ -1,4 +1,4 @@
-@include('common,modalHead')
+@include('common.modalHead')
 
 <div class="row">
     <div class="col-sm-12 col-ms-8">
