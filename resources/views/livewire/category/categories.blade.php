@@ -19,9 +19,9 @@
                 <table class="table-borderless table striped mt-1">
                     <thead class="text-center" style="font-size: 1rem; color: black!important;">
                         <tr>
-                            <th class="table-th">DESCRIPCIÓN</th>
-                            <th class="table-th">IMAGEN</th>
-                            <th class="table-th">ACCIÓN</th>
+                            <th class="table-th text-center">DESCRIPCIÓN</th>
+                            <th class="table-th text-center">IMAGEN</th>
+                            <th class="table-th text-center">ACCIÓN</th>
                         </tr>
                     </thead>
                     <tbody>
