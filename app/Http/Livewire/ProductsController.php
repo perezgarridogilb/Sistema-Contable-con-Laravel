@@ -63,15 +63,37 @@ class ProductsController extends Component
         ];
 
         $messages = [
-            'name.required' => 'Nombre del producto requerido',
-            'name.unique' => 'Ya existe el nombre del producto',
+            'name.required' => 'Nombre del producto requerido.',
+            'name.unique' => 'Ya existe el nombre del producto.',
+            'name.min' => 'El nombre del producto debe tener al menos 3 caracteres.',
+            'cost.required' => 'El costo es requerido.',
+            'price.required' => 'El precio es requerido.',
+            'alerts.required' => 'Ingresa el valor mínimo en existencias.',
+            'categoryid.not_in' => 'Elige un nombre de categoría diferente de Elegir.',
         ];
 
         $this->validate($rules, $messages);
 
         $product = Product::create([
+            /** Columnas tabla => Propiedades y su valor */
             'name' => $this->name,
-            'cost' => $this->cost
+            'cost' => $this->cost,
+            'price' => $this->price,
+            'barcode' => $this->barcode,
+            'stock' => $this->stock,
+            'alerts'  => $this->alerts,
+            'category_id'  => $this->categoryid
         ]);
+
+        if($this->image)
+        {
+            $customFileName = uniqid() . '_.' . $this->image->extension();
+            $this->image->storeAs('public/products', $customFileName);
+            $product->image = $customFileName;
+            $product->save();
+        }
+
+        $this->resetUI();
+        $this->emit('product-added', 'Producto Registrado');
     }
 }
