@@ -1,7 +1,7 @@
 @include('common.modalHead')
 
 <div class="row">
-    <div class="col-sm-12 col-ms-8">
+    <div class="col-sm-12 col-md-8">
         <div class="form-group">
             <label>Nombre</label>
             <input type="text" wire:model.lazy="name" class="form-control" placeholder="ej: Jabón">
@@ -11,7 +11,7 @@
     </div>
 
    
-        <div class="col-sm-12 col-ms-4">
+        <div class="col-sm-12 col-md-4">
             <div class="form-group">
                 <label>Código</label>
                 <input type="text" wire:model.lazy="barcode" class="form-control" placeholder="ej: 025874">
@@ -20,7 +20,7 @@
     
         </div>
 
-        <div class="col-sm-12 col-ms-4">
+        <div class="col-sm-12 col-md-4">
             <div class="form-group">
                 <label>Costo</label>
                 <input type="text" data-type='currency' wire:model.lazy="cost" class="form-control" placeholder="ej: 0.00">
@@ -29,7 +29,7 @@
     
         </div>
 
-        <div class="col-sm-12 col-ms-4">
+        <div class="col-sm-12 col-md-4">
             <div class="form-group">
                 <label>Precio</label>
                 <input type="text" data-type='currency' wire:model.lazy="price" class="form-control" placeholder="ej: 0.00">
@@ -38,7 +38,7 @@
     
         </div>
 
-        <div class="col-sm-12 col-ms-4">
+        <div class="col-sm-12 col-md-4">
             <div class="form-group">
                 <label>Stock</label>
                 <input type="number" wire:model.lazy="stock" class="form-control" placeholder="ej: 0">
@@ -47,7 +47,7 @@
     
         </div>
 
-        <div class="col-sm-12 col-ms-4">
+        <div class="col-sm-12 col-md-4">
             <div class="form-group">
                 <label>Alertas</label>
                 <input type="number" wire:model.lazy="alerts" class="form-control" placeholder="ej: 10">
@@ -62,9 +62,12 @@
                 <select wire:model='categoryid' class="form-control">
                     <option value="Elegir" disabled>Elegir</option>
                     @foreach ($categories as $category)
-                    <option value="{{ $category->id }}" disabled>{{ $category->name }}</option>
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
                 </select>
+                @error('categoryid')
+                <span class="text-danger er">{{$message}}</span>
+                @enderror
             </div>
         </div>
 

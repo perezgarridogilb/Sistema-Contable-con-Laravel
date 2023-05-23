@@ -68,10 +68,12 @@ class ProductsController extends Component
             'name.min' => 'El nombre del producto debe tener al menos 3 caracteres.',
             'cost.required' => 'El costo es requerido.',
             'price.required' => 'El precio es requerido.',
+            'stock.required' => 'El stock es requerido.',
             'alerts.required' => 'Ingresa el valor mínimo en existencias.',
             'categoryid.not_in' => 'Elige un nombre de categoría diferente de Elegir.',
         ];
 
+        /** Ejecutar validaciones */
         $this->validate($rules, $messages);
 
         $product = Product::create([
@@ -95,5 +97,9 @@ class ProductsController extends Component
 
         $this->resetUI();
         $this->emit('product-added', 'Producto Registrado');
+    }
+
+    public function resetUI() {
+
     }
 }
