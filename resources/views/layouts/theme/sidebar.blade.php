@@ -2,7 +2,7 @@
 <nav id="compactSidebar">
     <ul class="menu-categories">
         <li class="active">
-            <a href="#" class="menu-toggle" data-active="true">
+            <a href="{{url('categories')}}" class="menu-toggle" data-active="true">
                 <div class="base-menu">
                     <div class="base-icons">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-intersect" viewBox="0 0 16 16">
@@ -14,7 +14,7 @@
             </a>
         </li>
         <li class="">
-            <a href="#" class="menu-toggle" data-active="false">
+            <a href="{{url('products')}}" class="menu-toggle" data-active="false">
                 <div class="base-menu">
                     <div class="base-icons">
                         <svg style="fill:white" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tag-fill" viewBox="0 0 16 16">
@@ -97,7 +97,7 @@
                             <path d="M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2H3z"/>
                           </svg>
                     </div>
-                    <span>MONEDAS</span>
+                    <span>{{url('coins')}}</span>
                 </div>
             </a>
         </li>

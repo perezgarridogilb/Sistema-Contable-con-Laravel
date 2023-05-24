@@ -8,7 +8,14 @@ use Livewire\Component;
 class CoinsController extends Component
 {
 
-    public $componentName = 'Denominaciones', $pageTitle = 'Listado';
+    public $componentName = 'Denominaciones', $pageTitle = 'Listado', $selected_id, $image, $searchTerm;
+
+    /** Primer método que se ejecuta en el siclo de vida de los componentes de livewire */
+    public function mount() {
+        $this->componentName = 'Denominaciones';
+        $this->pageTitle = 'Listado';
+        $this->selected_id = 0;
+    }
 
     public function render()
     {
