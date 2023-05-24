@@ -10,7 +10,7 @@
                       </svg>
                 </span>
             </div>
-            <input type="text" wire:model.lazy="searchTerm" placeholder="Buscar" class="form-control">
+            <input type="text" wire:model.lazy="searchTerm" wire:change="searchProducts" placeholder="Buscar" class="form-control">
         </div>
     </div>
 </div>

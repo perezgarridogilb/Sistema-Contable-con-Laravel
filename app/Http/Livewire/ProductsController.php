@@ -27,6 +27,12 @@ class ProductsController extends Component
         $this->categoryid = 'Elegir';
     }
 
+    public function searchProducts()
+    {
+    $this->resetPage(); // Reinicia la página de la paginación al realizar una nueva búsqueda
+    $this->render(); // Vuelve a renderizar el componente para aplicar la búsqueda
+    }
+
     public function render()
     {
         if (strlen($this->searchTerm) > 0){
