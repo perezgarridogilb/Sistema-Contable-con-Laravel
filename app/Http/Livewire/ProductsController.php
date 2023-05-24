@@ -55,11 +55,13 @@ class ProductsController extends Component
     public function Store() {
         $rules = [
             'name' => 'required|unique:products|min:3',
-            'cost' => 'required',
-            'price' => 'required',
-            'stock' => 'required',
+            'cost' => 'required|gt:1',
+            'price' => 'required|gt:1',
+            'stock' => 'required|gt:0',
             'alerts' => 'required',
-            'categoryid' => 'required|not_in:Elegir'
+            'barcode' => 'required|gt:1',
+            'categoryid' => 'required|not_in:Elegir',
+            'image' => 'max:1024', // Max 1024 KB = 1 MB
         ];
 
         $messages = [
@@ -67,10 +69,16 @@ class ProductsController extends Component
             'name.unique' => 'Ya existe el nombre del producto.',
             'name.min' => 'El nombre del producto debe tener al menos 3 caracteres.',
             'cost.required' => 'El costo es requerido.',
+            'cost.gt' => 'El costo no puede ser menor a uno.',
             'price.required' => 'El precio es requerido.',
+            'price.gt' => 'El precio no puede ser menor a uno.',
             'stock.required' => 'El stock es requerido.',
+            'stock.gt' => 'El stock no puede ser menor a cero.',
             'alerts.required' => 'Ingresa el valor mínimo en existencias.',
+            'barcode.required' => 'Ingresa el valor de código de barras.',
+            'barcode.gt' => 'El código de barras no puede ser menor a uno.',
             'categoryid.not_in' => 'Elige un nombre de categoría diferente de Elegir.',
+            'image.max' => 'Inserte una imagen menor a 1024 KB.',
         ];
 
         /** Ejecutar validaciones */
@@ -97,6 +105,85 @@ class ProductsController extends Component
 
         $this->resetUI();
         $this->emit('product-added', 'Producto Registrado');
+    }
+    
+    public function Update() {
+        $rules = [
+            'name' => "required|min:3|unique:products,name,{$this->selected_id}",
+            'cost' => 'required|gte:1',
+            'price' => 'required|gte:1',
+            'stock' => 'required|gte:0',
+            'alerts' => 'required',
+            'barcode' => 'required|gte:1',
+            'categoryid' => 'required|not_in:Elegir',
+            'image' => 'max:1024', // Max 1024 KB = 1 MB
+        ];
+
+        $messages = [
+            'name.required' => 'Nombre del producto requerido.',
+            'name.unique' => 'Ya existe el nombre del producto.',
+            'name.min' => 'El nombre del producto debe tener al menos 3 caracteres.',
+            'cost.required' => 'El costo es requerido.',
+            'cost.gte' => 'El costo no puede ser menor a uno.',
+            'price.required' => 'El precio es requerido.',
+            'price.gte' => 'El precio no puede ser menor a uno.',
+            'stock.required' => 'El stock es requerido.',
+            'stock.gte' => 'El stock no puede ser menor a cero.',
+            'alerts.required' => 'Ingresa el valor mínimo en existencias.',
+            'barcode.required' => 'Ingresa el valor de código de barras.',
+            'barcode.gte' => 'El código de barras no puede ser menor a uno.',
+            'categoryid.not_in' => 'Elige un nombre de categoría diferente de Elegir.',
+            'image.max' => 'Inserte una imagen menor a 1024 KB.',
+        ];
+
+        /** Ejecutar validaciones */
+        $this->validate($rules, $messages);
+        $product = Product::find($this->selected_id);
+
+        $product->update([
+            /** Columnas tabla => Propiedades y su valor */
+            'name' => $this->name,
+            'cost' => $this->cost,
+            'price' => $this->price,
+            'barcode' => $this->barcode,
+            'stock' => $this->stock,
+            'alerts'  => $this->alerts,
+            'category_id'  => $this->categoryid
+        ]);
+
+        if($this->image)
+        {
+            $customFileName = uniqid() . '_.' . $this->image->extension();
+            $this->image->storeAs('public/products', $customFileName);
+            $imageTemp = $product->image;
+            $product->image = $customFileName;
+            $product->save();
+
+            if ($imageTemp != null)
+            {
+                if (file_exists('storage/products/' . $imageTemp)) {
+                    unlink('storage/products/' . $imageTemp);
+                }
+            }
+        }
+
+        $this->resetUI();
+        $this->emit('product-updated', 'Producto Actualizado');
+    }
+
+    public function Edit(Product $product){
+        $this->selected_id = $product->id;
+        $this->name = $product->name;
+        $this->barcode = $product->barcode;
+        $this->cost = $product->cost;
+        $this->price = $product->price;
+        $this->stock = $product->stock;
+        $this->alerts = $product->alerts;
+        $this->categoryid = $product->category_id;
+        $this->image = null;
+
+        $this->emit('modal-show', 'Show modal');
+
     }
 
     public function resetUI() {

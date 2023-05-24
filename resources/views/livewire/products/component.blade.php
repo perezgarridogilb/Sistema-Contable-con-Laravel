@@ -46,7 +46,7 @@
                             </td>
                             <td class="text-center">
                                 <a href="javascript:void(0)"
-                                wire:click:prevent="Edit({{$product->id}})"
+                                wire:click="Edit({{$product->id}})"
                                  class="btn shadow-none green mtmobile mr-2" title="Edit">
                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
@@ -77,7 +77,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', function (){
         window.livewire.on('product-added', msg => {
-            $('#theModal').modal('show');
+            $('#theModal').modal('hide');
         });
         window.livewire.on('product-updated', msg => {
             $('#theModal').modal('hide');
@@ -87,10 +87,10 @@
         window.livewire.on('product-deleted', msg => {
             noty(msg)
         })
-
+        /** Edit */
         window.livewire.on('modal-show', msg => {
             $('#theModal').modal('show');
-            noty(msg)
+            // noty(msg)
         })
         window.livewire.on('modal-hide', msg => {
             $('#theModal').modal('hide');
