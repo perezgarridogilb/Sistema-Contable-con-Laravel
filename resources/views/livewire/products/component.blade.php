@@ -100,4 +100,30 @@
         })
 
     });
+
+    function Confirm(id, products) {
+    if(products > 0)
+    {
+        swal('No se puede eliminar la categoría porque tiene productos relacionados')
+        return 0;
+    }
+
+    /** Eliminar */
+    swal({
+        title: 'Confirmar',
+        text: '¿Desea corfirmar eliminar el registro?',
+        type: 'warning',
+        showCancelButton: true,
+        cancelButtonText: 'Cerrar',
+        cancelButtonColor: '#fff',
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#3B3F5C'
+        }).then(function(result) {
+            if (result.value) {
+                window.livewire.emit('deleteRow', id)
+                swal.close()
+            }
+        })
+}  
+
 </script>
