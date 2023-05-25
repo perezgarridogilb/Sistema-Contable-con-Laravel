@@ -63,7 +63,7 @@ class CoinsController extends Component
     public function Store() {
         $rules = [
             'type' => 'required|not_in:Elegir',
-            'value' => 'required|unique:denominations|gte:1'
+            'value' => 'required|unique:denominations|gte:0.10'
         ];
 
         $messages = [
@@ -71,7 +71,7 @@ class CoinsController extends Component
             'type.not_in' => 'Elige un valor para el tipo distinto a Elegir.',
             'value.required' => 'El valor es requerido.',
             'value.unique' => 'Ya existe el valor.',
-            'value.gte' => 'El valor debe ser mayor a uno.'
+            'value.gte' => 'El valor debe ser mayor a diez centavos.'
         ];
 
         $this->validate($rules, $messages);
@@ -98,7 +98,7 @@ class CoinsController extends Component
     public function Update() {
         $rules = [
             'type' => "required|not_in:Elegir",
-            'value' => "required|unique:denominations,value,{$this->selected_id}|gte:1",
+            'value' => "required|unique:denominations,value,{$this->selected_id}|gte:0.10",
         ];
 
         $messages = [
@@ -106,7 +106,7 @@ class CoinsController extends Component
             'type.not_in' => 'Elige un tipo válido.',
             'name.required' => 'El valor es requerido.',
             'value.unique' => 'Ya existe el valor.',
-            'value.gte' => 'El valor debe ser mayor a uno.'
+            'value.gte' => 'El valor debe ser mayor a diez centavos.'
         ];
 
         $this->validate($rules, $messages);
