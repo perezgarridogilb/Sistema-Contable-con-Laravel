@@ -29,11 +29,11 @@
                         @foreach ($data as $coin)
                         <tr>
                             <td><h6>{{ $coin->type }}</h6></td>
-                            <td><h6>${{ number_format($coin->value, 2) }}</h6></td>
+                            <td><h6 class="text-center">${{ number_format($coin->value, 2) }}</h6></td>
                             <td class="text-center">
                                     <span>
                                         {{-- imagen existe por el Accesor --}}
-                                        <img src="{{ asset('storage/coins/' . $coin->imagen) }}" alt="Imagen de la categoría" alt="imagen de ejemplo" height="70" width="80" class="rounded">
+                                        <img src="{{ asset('storage/' . $coin->imagen) }}" alt="Imagen de la categoría" alt="imagen de ejemplo" height="70" width="80" class="rounded">
                                     </span>
                             </td>
                             <td class="text-center">
@@ -78,14 +78,22 @@
         window.livewire.on('item-deleted', msg => {
             noty(msg)
         })
+
+        window.livewire.on('item-deleted-error', msg => {
+            $('#theModal').modal('hide');
+            noty(msg)
+        })
+
         /** Edit */
-        window.livewire.on('modal-show', msg => {
+        window.livewire.on('show-modal', msg => {
             $('#theModal').modal('show');
             // noty(msg)
         })
+
         window.livewire.on('modal-hide', msg => {
             $('#theModal').modal('hide');
         })
+
         $('#theModal').on('hidden.bs.modal', function() {
             $('.er').css('display', 'none')
         });
