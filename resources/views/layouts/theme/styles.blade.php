@@ -19,6 +19,12 @@
 
 
 <style>
+
+    .sales {
+
+  padding-right: 30px!important;
+  padding-left: 30px!important;
+    }
     a.tabmenu {
         padding: 12px 24px;
     }

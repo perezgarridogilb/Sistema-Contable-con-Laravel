@@ -1,18 +1,25 @@
 <div class="row sales layout-top-spacing">
 
     <div class="col-sm-12">
+
         <div class="widget widget-chart-one">
             <div class="widget-heading">
-                <h4 class="card-title">
-                    <b>{{$pageTitle}} de {{$componentName}}</b>
-                </h4>
+                <div class="col-sm-8">
+                    <h4 class="card-title">
+                        <b>{{$pageTitle}} de {{$componentName}}</b>
+                    </h4>
+                    @include('common.searchbox')
+                </div>
+                <div class="col-sm-4 text-center d-flex align-items-center">
                 <ul class="tabs tabs-pills">
                     <li>
-                        <a href="javascript:void(0)" class="tabmenu" data-toggle="modal" data-target="#theModal" style="background-color: #343a40!important; padding: 12px 24px">Agregar</a>
+                        <a href="javascript:void(0)" class="tabmenu" data-toggle="modal" data-target="#theModal" style="background-color: #343a40!important; padding: 12px 24px">Registrar</a>
                     </li>
                 </ul>
+                </div>
+
             </div>
-            @include('common.searchbox')
+        
 
             <div class="widget-content">
                 <div class="table-responsive">

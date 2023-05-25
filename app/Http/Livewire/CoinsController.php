@@ -19,7 +19,7 @@ class CoinsController extends Component
 
     public function mount()
     {
-        $this->pageTitle = 'Listado';
+        $this->pageTitle = 'Lista';
         $this->componentName = 'denominaciones';
         $this->type = 'Elegir';
 

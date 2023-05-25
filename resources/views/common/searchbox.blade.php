@@ -1,8 +1,8 @@
 @livewireStyles
 <div class="row justify-content-between">
-    <div class="col-lg-4 col-md-4 col-sm-12">
+    <div class="col-lg-6 col-md-6 col-sm-10">
 
-        <div class="input-group mb-4">
+        <div class="input-group mb-4 mt-4">
             <div class="input-group-prepend">
                 <span class="input-group-text input-gp">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">

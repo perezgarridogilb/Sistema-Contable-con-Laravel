@@ -18,7 +18,7 @@ class CategoriesController extends Component
 
     public function mount()
     {
-        $this->pageTitle = 'Listado';
+        $this->pageTitle = 'Lista';
         $this->componentName = 'categorias';
 
     }

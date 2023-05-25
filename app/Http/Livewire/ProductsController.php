@@ -22,7 +22,7 @@ class ProductsController extends Component
 
     public function mount()
     {
-        $this->pageTitle = 'Listado';
+        $this->pageTitle = 'Lista';
         $this->componentName = 'productos';
         $this->categoryid = 'Elegir';
     }
