@@ -4,7 +4,7 @@
         <div class="widget widget-chart-one">
             <div class="widget-heading">
                 <div class="col-sm-8">
-                    <h4 class="card-title mt-3">
+                    <h4 class="card-title mt-2">
                         <b>{{$pageTitle}} de {{$componentName}}</b>
                     </h4>
                     @include('common.searchbox')
@@ -24,14 +24,14 @@
                 <table class="table-borderless table striped mt-1">
                     <thead class="text-center" style="font-size: 1rem; color: black!important;">
                         <tr>
-                            <th class="table-th text-center">DESCRIPCIÓN</th>
-                            <th class="table-th text-center">CÓDIGO DE BARRAS</th>
-                            <th class="table-th text-center">CATEGORÍA</th>
-                            <th class="table-th text-center">PRECIO</th>
-                            <th class="table-th text-center">STOCK</th>
-                            <th class="table-th text-center">INV. MIN</th>
-                            <th class="table-th text-center">IMAGEN</th>
-                            <th class="table-th text-center">ACCIÓN</th>
+                            <th class="table-th text-center">Descripción</th>
+                            <th class="table-th text-center">Código de Barras</th>
+                            <th class="table-th text-center">Categoría</th>
+                            <th class="table-th text-center">Precio</th>
+                            <th class="table-th text-center">Stock</th>
+                            <th class="table-th text-center">Inv. Min</th>
+                            <th class="table-th text-center">Imagen</th>
+                            <th class="table-th text-center">Acción</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,7 +39,7 @@
                         <tr>
                             <td class="text-left"><h6>{{$product->name}}</h6></td>
                             <td class="text-center"><h6>{{$product->barcode}}</h6></td>
-                            <td class="text-center"><h6>{{$product->category}}</h6></td>
+                            <td class="text-center"><h6>{{ ucwords(mb_convert_case($product->category, MB_CASE_TITLE, 'UTF-8')) }}</h6></td>
                             <td class="text-center"><h6>{{$product->price}}</h6></td>
                             <td class="text-center"><h6>{{$product->stock}}</h6></td>
                             <td class="text-center"><h6>{{$product->alerts}}</h6></td>

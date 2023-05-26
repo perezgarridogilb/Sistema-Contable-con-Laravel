@@ -4,7 +4,7 @@
         <div class="widget widget-chart-one">
             <div class="widget-heading">
                 <div class="col-sm-8">
-                    <h4 class="card-title  mt-3">
+                    <h4 class="card-title  mt-2">
                         <b>{{$pageTitle}} de {{$componentName}}</b>
                     </h4>
                     @include('common.searchbox')

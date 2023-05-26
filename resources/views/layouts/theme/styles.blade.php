@@ -21,6 +21,9 @@
 <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
 <script src="https://kit.fontawesome.com/7b5fb2de65.js" crossorigin="anonymous" async></script>
 
+<link href="{{ asset('assets/css/apps/scrumboard.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('assets/css/apps/notes.css') }}" rel="stylesheet" type="text/css" />
+
 <style>
 
     .sales {
