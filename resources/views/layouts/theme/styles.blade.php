@@ -17,6 +17,9 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/widgets/modules-widgets.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/forms/theme-checkbox-radio.css') }}"/>
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+<link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+<script src="https://kit.fontawesome.com/7b5fb2de65.js" crossorigin="anonymous" async></script>
 
 <style>
 
@@ -37,19 +40,22 @@
     }
 
     .widget {
-        box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12)!important;
+        box-shadow: none!important;
     }
 
     a.green {
         background: #0fadc8;
         color: #fafafa;
         padding: 12px 24px;
+        border: 2px solid #0fadc8;
+        vertical-align: initial!important;
     }
 
     a.green1 {
         background: #fafafa;
         padding: 12px 24px;
         border: 2px solid #0fadc8;
+        vertical-align: initial!important;
     }
 
     #compactSidebar svg {

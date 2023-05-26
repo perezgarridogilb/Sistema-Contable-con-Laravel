@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 /*
 	===============================
 			@Import	Function
@@ -15,11 +16,12 @@ body {
   color: #888ea8;
   height: 100%;
   font-size: 0.875rem;
-  background: #fafafa!important;
+  background: #ffffff!important;
   overflow-x: hidden;
   overflow-y: auto;
-  letter-spacing: 0.0312rem;
-  font-family: 'Quicksand', sans-serif; }
+  font-family: Arial, sans-serif;
+
+   }
 
 h1, h2, h3, h4, h5, h6 {
   color: #3b3f5c; }
@@ -427,6 +429,7 @@ select.form-control.form-custom {
     padding: 8px 8px; }
   .btn:hover, .btn:focus {
     background-color: #0b8499;
+    border-color: #0b8499;
     border-color: 1px solid #0b8499;
     color: #fff
 }

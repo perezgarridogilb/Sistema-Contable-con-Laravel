@@ -14,12 +14,10 @@ html {
 body {
   color: #888ea8;
   height: 100%;
-  font-size: 0.875rem;
+  font-size: 0.675rem;
   background: #f1f2f3;
   overflow-x: hidden;
-  overflow-y: auto;
-  letter-spacing: 0.0312rem;
-  font-family: 'Quicksand', sans-serif; }
+  overflow-y: auto;}
 
 h1, h2, h3, h4, h5, h6 {
   color: #3b3f5c; }
@@ -248,7 +246,7 @@ code {
 .navbar {
   padding: 0 0 0 20px;
   background: #fafafa;
-  min-height: 80px;
+  min-height: 58px!important;
 /*   border-bottom: 1px solid #fafafa;
   -webkit-transition: .3s ease all;
   transition: .3s ease all;
@@ -681,7 +679,7 @@ code {
           font-size: 14px;
           font-weight: 500;
           margin-bottom: 0;
-          color: #fafafa; }
+          color: #ffffff; }
         .navbar .navbar-item .nav-item.user-profile-dropdown .dropdown-menu .user-profile-section .media .media-body p {
           font-size: 11px;
           font-weight: 500;
@@ -724,7 +722,7 @@ code {
 .sidebar-wrapper #compactSidebar {
   width: 150px;
   position: fixed;
-  top: 80px;
+  top: 58px;
   left: 0;
   z-index: 1031;
   transition: .3s ease all;

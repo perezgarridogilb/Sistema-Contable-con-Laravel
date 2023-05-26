@@ -14,12 +14,11 @@ html {
 body {
   color: #888ea8;
   height: 100%;
-  font-size: 0.875rem;
+  font-size: 0.675rem;
   background: #f1f2f3;
   overflow-x: hidden;
   overflow-y: auto;
-  letter-spacing: 0.0312rem;
-  font-family: 'Quicksand', sans-serif; }
+}
 
 h1, h2, h3, h4, h5, h6 {
   color: #3b3f5c; }
