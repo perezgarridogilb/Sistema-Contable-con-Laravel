@@ -7,8 +7,7 @@
                     <table class="table table-bordered table-striped mt-1">
                         <thead class="text-center" style="font-size: 1rem; color: black!important;">
                             <tr>
-                                <th width="10%"></th>
-                                <th class="table-th text-left">Descripción</th>
+                                <th class="table-th text-center" width="30%">Descripción</th>
                                 <th class="table-th text-center">Precio</th>
                                 <th width="13%" class="table-th text-center">Cant</th>
                                 <th class="table-th text-center">Importe</th>

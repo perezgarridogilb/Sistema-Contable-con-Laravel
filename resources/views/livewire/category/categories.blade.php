@@ -26,15 +26,15 @@
                 <table class="table-borderless table striped mt-1">
                     <thead class="text-center" style="font-size: 1rem; color: black!important;">
                         <tr>
-                            <th class="table-th text-center">DESCRIPCIÓN</th>
-                            <th class="table-th text-center">IMAGEN</th>
-                            <th class="table-th text-center">ACCIÓN</th>
+                            <th class="table-th text-center">Descripción</th>
+                            <th class="table-th text-center">Imagen</th>
+                            <th class="table-th text-center">Acción</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($categories as $category)
                         <tr>
-                            <td><h6>{{ $category->name }}</h6></td>
+                            <td><h6>{{ ucwords(mb_convert_case($category->name, MB_CASE_TITLE, 'UTF-8')) }}</h6></td>
                             <td class="text-center">
                                     <span>
                                         {{-- imagen existe por el Accesor --}}
