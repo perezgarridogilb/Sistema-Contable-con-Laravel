@@ -17,6 +17,7 @@
             </div>
             <div class="connect-sorting-content mt-4">
                 <div class="card simple-title-task ui-sortable-handles">
+                    <div class="card-body">
                     <div class="input-group input-group-md mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text input-gp hideonsm" style="background: #3B3F5C; color: white;">
@@ -37,7 +38,7 @@
                         @if ($total > 0)                            
                         <div class="col-sm-12 col-md-12 col-lg-6">
                             <button onclick="Confirm('','clearCart', '¿Seguro de eliminar el carrito?')" class="btn btn-dark mtmobile">
-                                Cancelar f4
+                                Cancelar F4
                             </button>
                         </div>
                         @endif
@@ -48,6 +49,7 @@
                             
                         @endif
                     </div>
+                </div>
                 </div>
             </div>
         </div>
