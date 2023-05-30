@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Denomination;
 use App\Models\Product;
+use Darryldecode\Cart\Cart as CartCart;
 use Darryldecode\Cart\Facades\CartFacade as Cart;
 
 use Livewire\Component;
@@ -101,5 +102,56 @@ class PosController extends Component
         $this->itemsQuantity = Cart::getTotalQuatity();         
         $this->emit('scan-ok', $title); 
             
+    }
+
+    /** Reemplazar la información del producto dentro del carrito, 
+     * quita la información y la vuelve a poner */
+    public function updateQty($productId, $cant = 1)
+    {
+        $title = '';
+        $product = Product::find($productId);
+        $exist = Cart::get($productId);
+        if ($exist) {
+            $title = 'Cantidad actualizada';
+        } else {
+            $title = 'Producto agregado';
+        }
+
+        if($exist) {
+            if($product->stock < $cant)
+            {
+                $this->emit('no-stock', 'Stock insuficiente');
+                return;
+            }
+        }
+
+        $this->removeItem($productId);
+
+        if ($cant > 0) {
+            Cart::add($product->id, $product->name, $product->price, $cant, $product->image);
+
+            $this->total = Cart::getTotal();            
+            $this->itemsQuantity = Cart::getTotalQuatity();         
+            $this->emit('scan-ok', $title); 
+        } else {
+            $this->emit('no-stock', 'Stock insuficiente');
+        }
+        
+    }
+
+    public function removeItem($productId)
+    {
+        Cart::remove($productId);
+                    $this->total = Cart::getTotal();            
+            $this->itemsQuantity = Cart::getTotalQuatity();         
+            $this->emit('scan-ok', 'Producto eliminado'); 
+    }
+
+    public function decreaseQty($productId)
+    {
+        $item = Cart::get($productId);
+        Cart::remove($productId);
+
+        $newQty = ($item->quantity) - 1;
     }
 }
