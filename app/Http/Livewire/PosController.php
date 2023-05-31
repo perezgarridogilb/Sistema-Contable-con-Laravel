@@ -58,7 +58,7 @@ class PosController extends Component
                 return;
             }
             if ($product->stock < 1) {
-                $this->emit('no-stock', 'Stock insuficiente');
+                $this->emit('no-stock', 'Stock no suficiente');
                 return;
             }
             Cart::add($product->id, $product->name, $product->price, $cant, $product->image);
