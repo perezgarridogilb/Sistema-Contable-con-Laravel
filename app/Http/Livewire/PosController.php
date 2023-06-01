@@ -50,7 +50,7 @@ class PosController extends Component
         'saveSale' => 'saveSale'
     ];
 
-    public function Scancode($barcode, $cant = 1)
+    public function ScanCode($barcode, $cant = 1)
     {
         $product = Product::where('barcode', $barcode)->first();
 
