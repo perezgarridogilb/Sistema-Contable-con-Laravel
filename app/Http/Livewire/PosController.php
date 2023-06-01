@@ -4,9 +4,13 @@ namespace App\Http\Livewire;
 
 use App\Models\Denomination;
 use App\Models\Product;
+use App\Models\Sale;
+use App\Models\SaleDetails;
 use Darryldecode\Cart\Cart as CartCart;
 use Darryldecode\Cart\Facades\CartFacade as Cart;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 use Livewire\Component;
 
 class PosController extends Component
@@ -142,9 +146,10 @@ class PosController extends Component
     public function removeItem($productId)
     {
         Cart::remove($productId);
-                    $this->total = Cart::getTotal();            
-            $this->itemsQuantity = Cart::getTotalQuatity();         
-            $this->emit('scan-ok', 'Producto eliminado'); 
+        
+        $this->total = Cart::getTotal();
+        $this->itemsQuantity = Cart::getTotalQuatity();
+        $this->emit('scan-ok', 'Producto eliminado'); 
     }
 
     public function decreaseQty($productId)
@@ -153,5 +158,90 @@ class PosController extends Component
         Cart::remove($productId);
 
         $newQty = ($item->quantity) - 1;
+
+        /** Si todavía quedan productos en el carrito */
+        if ($newQty > 0) {
+            Cart::add($item->id, $item->name, $item->price, $newQty, $item->attributes[0]);
+        }
+
+        $this->total = Cart::getTotal();
+        $this->itemsQuantity = Cart::getTotalQuatity();
+        $this->emit('scan-ok', 'Cantidad actualizada'); 
+    }
+
+    public function clearCart(Type $var = null)
+    {
+        Cart::clear();
+        $this->efectivo = 0;
+        $this->change = 0;
+        $this->total = Cart::getTotal();
+        $this->itemsQuantity = Cart::getTotalQuatity();
+
+        $this->emit('scan-ok', 'Carrito vacío');
+    }
+
+    public function saveSale()
+    {
+        if ($this->total <= 0) {
+            $this->emit('sale-error', 'Agrega productos a la venta');
+            return;
+        }
+        if($this->efectivo <= 0)
+        {
+            $this->emit('sale-error', 'Ingresa el efectivo');
+            return;
+        }
+        if($this->efectivo > $this->efectivo)
+        {
+            $this->emit('sale-error', 'El efectivo debe ser mayor o igual al total');
+            return;
+        }
+        DB::beginTransaction();
+
+        try {
+            $sale = Sale::create([
+                'total' => $this->total,
+                'items' => $this->itemsQuantity,
+                'cash' => $this->efectivo,
+                'change' => $this->change,
+                'user_id' => Auth()->user()->id
+            ]);
+
+            if ($sale) {
+                $items = Cart::getContent();
+                foreach($items as $item) {
+                    SaleDetail::create([
+                        'price' => $item->price,
+                        'quantity' => $item->quantity,
+                        'product_id' => $item->id,
+                        'sale_id' => $sale->id
+                    ]);
+
+                    // update stock
+                    $product = Product::find($item->id);
+                    $product->stock = $product->stock - $item->quantity;
+                    $product->save();
+                }
+            }
+
+            DB::commit();
+
+            Cart::clear();
+            $this->efectivo = 0;
+            $this->change = 0;
+            $this->total = Cart::getTotalQuantity();
+            $this->emit('sale-ok', 'Venta registrada con éxito');
+            $this->emit('print-ticket', $sale->id);
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            $this->emit('sale-error', $e->getMessage());
+        }
+    }
+
+    public function printTicket($sale)
+    {
+        /** Aplicación en C# lo detecta */
+        return Redirect::to("print://$sale->id");
     }
 }

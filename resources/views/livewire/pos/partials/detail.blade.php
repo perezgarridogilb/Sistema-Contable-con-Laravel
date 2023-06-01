@@ -62,7 +62,7 @@
                     </table>
                 </div>
             @else
-                <h5 class="text-center text-muted">Agrega Productos A La Venta</h5>
+                <h5 class="text-center text-muted">Agrega productos para realizar ventas</h5>
             @endif
 
             <div wire:loading.inline wire:target="saveSale">
