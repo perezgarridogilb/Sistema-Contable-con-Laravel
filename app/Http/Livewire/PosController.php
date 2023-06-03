@@ -54,7 +54,7 @@ class PosController extends Component
     {
         $product = Product::where('barcode', $barcode)->first();
 
-        if ($product == null || empty($empty)) {
+        if ($product == null || empty($product)) {
             $this->emit('scan-notfound', 'El producto no está registrado');
         } else {
             if ($this->inCart($product->id)) {
@@ -67,6 +67,7 @@ class PosController extends Component
             }
             Cart::add($product->id, $product->name, $product->price, $cant, $product->image);
             $this->total = Cart::getTotal();
+            $this->itemsQuantity = Cart::getTotalQuantity();
             $this->emit('scan-ok', 'Producto agregado');
         }
     }
@@ -82,7 +83,7 @@ class PosController extends Component
         
     }
 
-    public function increaseQty($productId, $cant)
+    public function increaseQty($productId, $cant = 1)
     {
         $title = '';
         $product = Product::find($productId);
@@ -94,7 +95,7 @@ class PosController extends Component
         }
 
         if ($exist) {
-            if ($product->stock < ($cant + $exist->quantity())) {
+            if ($product->stock < ($cant + $exist->quantity)) {
                 $this->emit('no-stock', 'Stock insuficiente');
                 return;
             }
@@ -103,7 +104,7 @@ class PosController extends Component
         Cart::add($product->id, $product->name, $product->price, $cant, $product->image);
 
         $this->total = Cart::getTotal();            
-        $this->itemsQuantity = Cart::getTotalQuatity();         
+        $this->itemsQuantity = Cart::getTotalQuantity();         
         $this->emit('scan-ok', $title); 
             
     }
@@ -148,7 +149,7 @@ class PosController extends Component
         Cart::remove($productId);
         
         $this->total = Cart::getTotal();
-        $this->itemsQuantity = Cart::getTotalQuatity();
+        $this->itemsQuantity = Cart::getTotalQuantity();
         $this->emit('scan-ok', 'Producto eliminado'); 
     }
 
@@ -165,7 +166,8 @@ class PosController extends Component
         }
 
         $this->total = Cart::getTotal();
-        $this->itemsQuantity = Cart::getTotalQuatity();
+        // getTotalQuantity
+        $this->itemsQuantity = Cart::getTotalQuantity();
         $this->emit('scan-ok', 'Cantidad actualizada'); 
     }
 
@@ -229,11 +231,12 @@ class PosController extends Component
             Cart::clear();
             $this->efectivo = 0;
             $this->change = 0;
-            $this->total = Cart::getTotalQuantity();
+            $this->total = Cart::getTotal();
+            $this->itemsQuantity = Cart::getTotalQuantity();
+
             $this->emit('sale-ok', 'Venta registrada con éxito');
             $this->emit('print-ticket', $sale->id);
-
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             DB::rollBack();
             $this->emit('sale-error', $e->getMessage());
         }
