@@ -5,7 +5,7 @@
         <div class="widget widget-chart-one">
             <div class="widget-heading">
                 <div class="col-sm-8">
-                    <h4 class="card-title mt-2">
+                    <h4 class="card-title">
                         <b>{{$pageTitle}} de {{$componentName}}</b>
                     </h4>
                     @include('common.searchbox')
@@ -60,7 +60,11 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{ $categories->links() }}
+                <div class="d-flex justify-content-center">
+                    <nav class="text-center">
+                        {{ $categories->links() }}
+                    </nav>
+                </div>
             </div>
             </div>
         </div>

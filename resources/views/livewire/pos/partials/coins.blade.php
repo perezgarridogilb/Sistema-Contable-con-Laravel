@@ -2,7 +2,7 @@
     <div class="col-sm-12">
 
         <div class="connect-sorting">
-            <h5 class="text-center mb-3">DENOMINACIONES</h5>
+            <h5 class="text-center mb-3">Denominaciones</h5>
           <div class="container">
               <div class="row">
                 @foreach ($denominations as $index => $d)

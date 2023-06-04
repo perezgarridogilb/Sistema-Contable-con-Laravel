@@ -4,7 +4,7 @@
         <div class="widget widget-chart-one">
             <div class="widget-heading">
                 <div class="col-sm-8">
-                    <h4 class="card-title mt-2">
+                    <h4 class="card-title">
                         <b>{{$pageTitle}} de {{$componentName}}</b>
                     </h4>
                     @include('common.searchbox')
@@ -21,7 +21,7 @@
 
             <div class="widget-content">
                 <div class="table-responsive">
-                <table class="table-borderless table striped mt-1">
+                <table class="table-borderless table striped mt-1 table-responsive">
                     <thead class="text-center" style="font-size: 1rem; color: black!important;">
                         <tr>
                             <th class="table-th text-center">Descripción</th>
@@ -37,7 +37,7 @@
                     <tbody>
                         @foreach ($data as $product)
                         <tr>
-                            <td class="text-left"><h6>{{$product->name}}</h6></td>
+                            <td class="text-left" width="15%"><h6>{{$product->name}}</h6></td>
                             <td class="text-center"><h6>{{$product->barcode}}</h6></td>
                             <td class="text-center"><h6>{{ ucwords(mb_convert_case($product->category, MB_CASE_TITLE, 'UTF-8')) }}</h6></td>
                             <td class="text-center"><h6>{{$product->price}}</h6></td>
@@ -70,7 +70,11 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{$data->links()}}
+                <div class="d-flex justify-content-center">
+                    <nav class="text-center">
+                        {{ $data->links() }}
+                    </nav>
+                </div>
             </div>
             </div>
         </div>

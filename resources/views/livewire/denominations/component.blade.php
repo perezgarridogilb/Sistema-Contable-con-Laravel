@@ -1,10 +1,10 @@
 <div class="row sales">
 
     <div class="col-sm-12">
-        <div class="widget widget-chart-one">
+        <div class="widget widget-chart-one" style="padding: 10px 20px 10px 20px;">
             <div class="widget-heading">
                 <div class="col-sm-8">
-                    <h4 class="card-title  mt-2">
+                    <h4 class="card-title">
                         <b>{{$pageTitle}} de {{$componentName}}</b>
                     </h4>
                     @include('common.searchbox')
@@ -60,7 +60,11 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{ $data->links() }}
+                <div class="d-flex justify-content-center">
+                    <nav class="text-center">
+                        {{ $data->links() }}
+                    </nav>
+                </div>
             </div>
             </div>
         </div>
