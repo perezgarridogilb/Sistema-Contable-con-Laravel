@@ -205,7 +205,6 @@ span.red {
 /*      Form Control       */
 .form-control {
   height: auto;
-  padding: 3px!important;
   border: 1px solid #bfc9d4;
   color: #3b3f5c;
   font-size: 15px;

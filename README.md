@@ -1,6 +1,19 @@
 # Sistema-Contable-con-Laravel
 Este sistema fue inspirado en ventaslite, sin embargo, incluye mejoras profundas
 
+## Sistema de autenticación
+- Descarga
+`composer require spatie/laravel-permission`
+
+`php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"`
+
+`php artisan optimize:clear`
+`php artisan config:clear`
+- Migraciones
+`php artisan migrate`
+
+Referencia: https://spatie.be/docs/laravel-permission/v5/installation-laravel
+
 ## Imágenes
 
 Ejemplo POS:

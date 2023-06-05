@@ -33,20 +33,20 @@
                     </div>
 
                     <h4 class="text-muted">Cambio: ${{number_format($change, 2)}}</h4>
-                    <div class="row justify-content-between mt-5">
+                    <div class="row d-flex text-center justify-content-around mt-5">
                         @if ($total > 0)                            
-                        <div class="col-sm-12 col-md-12 col-lg-6">
-                            <button onclick="Confirm('','clearCart', '¿Seguro de eliminar el carrito?')" class="btn btn-dark mtmobile">
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-5 m-sm-0 m-md-3 m-lg-1">
+                            <button onclick="Confirm('','clearCart', '¿Seguro de eliminar el carrito?')" class="btn btn-dark">
                                 Cancelar
                             </button>
                         </div>
                         @endif
-                    </div>
-                    <div class="col-sm-12 col-md-12 col-lg-6">
-                        @if ($efectivo >= $total && $total > 0)
-                        <button wire:click.prevent="saveSale" class="btn btn-dark btn-md btn-block">Guardar</button>
-                            
-                        @endif
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-5 pl-2 pr-4 m-sm-0 m-md-3 m-lg-1">
+                            @if ($efectivo >= $total && $total > 0)
+                            <button wire:click.prevent="saveSale" class="btn btn-dark ">Guardar</button>
+                                
+                            @endif
+                        </div>
                     </div>
                 </div>
                 </div>

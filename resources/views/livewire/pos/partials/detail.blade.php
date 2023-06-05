@@ -28,13 +28,15 @@
                                 <td><h6>{{ $item->name }}</h6></td>
                                 <td>${{number_format($item->price,2)}}</td>
                                 <td class="form-outline">
-                                    <input type="number" id="r{{$item->id}}"
-                                    wire:change="updateQty({{$item->id}}, $('#r' + {{$item->id}}.val() )"
-                                    style="font-size: 1rem!important" class="form-control text-center" style="padding: 0px!important" value="{{$item->quantity}}">
+                                    <input type="number" id="r{{$item->id}}" wire:change="updateQty({{$item->id}}, $('#r' +{{$item->id}}).val() )"
+                                    style="font-size: 1rem!important; padding: 3px!important;"
+                                    class="form-control text-center"
+                                    value="{{$item->quantity}}"
+                             >
                                 </td>
                                 <td>
                                     <p class="text-sm d-flex justify-content-center">
-                                        ${{number_format($item->price * $item->quatity, 2)}}
+                                        ${{number_format($item->price * $item->quantity,2)}}
                                     </p>
                                 </td>
                                 <td>

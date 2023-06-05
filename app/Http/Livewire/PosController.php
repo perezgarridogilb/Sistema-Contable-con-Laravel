@@ -65,7 +65,7 @@ class PosController extends Component
                 $this->emit('no-stock', 'Stock no suficiente');
                 return;
             }
-            Cart::add($product->id, $product->name, $product->price, $cant, $product->image);
+            Cart::add($product->id, $product->name, $product->price, $cant, $product->imagen);
             $this->total = Cart::getTotal();
             $this->itemsQuantity = Cart::getTotalQuantity();
             $this->emit('scan-ok', 'Producto agregado');
@@ -101,7 +101,7 @@ class PosController extends Component
             }
         }
 
-        Cart::add($product->id, $product->name, $product->price, $cant, $product->image);
+        Cart::add($product->id, $product->name, $product->price, $cant, $product->imagen);
 
         $this->total = Cart::getTotal();            
         $this->itemsQuantity = Cart::getTotalQuantity();         
@@ -133,10 +133,10 @@ class PosController extends Component
         $this->removeItem($productId);
 
         if ($cant > 0) {
-            Cart::add($product->id, $product->name, $product->price, $cant, $product->image);
+            Cart::add($product->id, $product->name, $product->price, $cant, $product->imagen);
 
             $this->total = Cart::getTotal();            
-            $this->itemsQuantity = Cart::getTotalQuatity();         
+            $this->itemsQuantity = Cart::getTotalQuantity();         
             $this->emit('scan-ok', $title); 
         } else {
             $this->emit('no-stock', 'Stock insuficiente');
