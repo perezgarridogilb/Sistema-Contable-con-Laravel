@@ -34,13 +34,17 @@
                     <tbody>
                         @foreach ($categories as $category)
                         <tr>
-                            <td><h6>{{ ucwords(mb_convert_case($category->name, MB_CASE_TITLE, 'UTF-8')) }}</h6></td>
+                            <td style="height: 95px!important;"><h6>{{ ucwords(mb_convert_case($category->name, MB_CASE_TITLE, 'UTF-8')) }}</h6></td>
+                            
                             <td class="text-center">
+                                @if (!empty($category->name))
                                     <span>
                                         {{-- imagen existe por el Accesor --}}
                                         <img src="{{ asset('storage/categorias/' . $category->imagen) }}" alt="Imagen de la categoría" alt="imagen de ejemplo" height="70" width="80" class="rounded">
                                     </span>
+                                        
                             </td>
+                           
                             <td class="text-center">
                                 <a href="javascript:void(0)" wire:click="Edit({{ $category->id }})" class="shadow-none btn green mtmobile lg-mr-2 mb-lg-1 mb-md-1 mb-sm-1" title="Edit">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -56,6 +60,7 @@
                                   </svg>
                                 </a>
                             </td>
+                            @endif
                         </tr>
                         @endforeach
                     </tbody>

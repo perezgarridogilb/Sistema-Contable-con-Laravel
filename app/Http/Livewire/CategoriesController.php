@@ -37,9 +37,24 @@ class CategoriesController extends Component
         $data = Category::orderBy('id', 'desc')->paginate($this->pagination);
         }
         
+   // Verificar si es necesario agregar elementos vacíos al final de $data
+   if ($data->lastPage() > 0 && $data->count() < $this->pagination) {
+    $remainingItems = $this->pagination - $data->count();
+    
+    for ($i = 0; $i < $remainingItems; $i++) {
+        $data->push(new Category());
+    }
+}
+
         return view('livewire.category.categories', ['categories' => $data])
             ->extends('layouts.theme.app')
             ->section('content');
+    }
+
+    public function searchProducts()
+    {
+    $this->resetPage(); // Reinicia la página de la paginación al realizar una nueva búsqueda
+    $this->render(); // Vuelve a renderizar el componente para aplicar la búsqueda
     }
 
     public function Edit($id){

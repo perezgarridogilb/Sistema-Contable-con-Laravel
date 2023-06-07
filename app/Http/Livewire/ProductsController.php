@@ -13,6 +13,7 @@ class ProductsController extends Component
     use WithPagination;
     use WithFileUploads;
     public $name, $barcode, $cost, $price, $stock, $alerts, $categoryid, $searchTerm, $image, $selected_id, $pageTitle, $componentName;
+    public $bandera = false, $banderaStock = false;
     private $pagination = 5;
 
     public function paginationView()
@@ -33,6 +34,20 @@ class ProductsController extends Component
     $this->render(); // Vuelve a renderizar el componente para aplicar la búsqueda
     }
 
+    public function recargarRender($value)
+    {
+        $this->bandera = $value;
+        $this->resetPage(); // Reinicia la página de la paginación al realizar una nueva búsqueda
+        $this->render(); // Vuelve a renderizar el componente para aplicar la búsqueda
+    }
+
+    public function recargarRender1($value)
+    {
+        $this->banderaStock = $value;
+        $this->resetPage(); // Reinicia la página de la paginación al realizar una nueva búsqueda
+        $this->render(); // Vuelve a renderizar el componente para aplicar la búsqueda
+    }
+
     public function render()
     {
         if (strlen($this->searchTerm) > 0){
@@ -46,7 +61,7 @@ class ProductsController extends Component
         } else {
             $products = Product::join('categories as c', 'c.id', 'products.category_id')
                 ->select('products.*', 'c.name as category')
-                ->orderBy('products.name', 'asc')
+                ->orderBy('products.name', $this->bandera ? 'desc' : 'asc')
                 ->paginate($this->pagination);
         }
 

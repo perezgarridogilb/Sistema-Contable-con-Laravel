@@ -13,7 +13,7 @@ class RolesController extends Component
 {
     use WithPagination;
 
-    public $roleName, $search, $selected_id, $pageTitle, $componentName;
+    public $roleName, $searchTerm, $selected_id, $pageTitle, $componentName;
     private $pagination = 5;
 
     public function paginationView()
@@ -29,12 +29,11 @@ class RolesController extends Component
 
     public function render()
     {
-        if (strlen($this->search) > 0) {
-            $roles = Role::where('name', 'like', '%' . $this->search . '%')->paginate($this->pagination);
-        } else {
+        if(strlen($this->searchTerm) > 0)
+            $roles = Role::where('name', 'like', '%' . $this->searchTerm . '%')->paginate($this->pagination);
+        else
             $roles = Role::orderBy('name', 'asc')->paginate($this->pagination);
-        }
-        
+
         return view('livewire.roles.component', [
             'roles' => $roles
         ])
@@ -85,7 +84,7 @@ class RolesController extends Component
         $role->name = $this->roleName;
         $role->save();
 
-        $this->emit('role-update', 'Se actualizó el role con éxito.');
+        $this->emit('role-updated', 'Se actualizó el role con éxito.');
         $this->resetUI();
     }
 
@@ -106,7 +105,7 @@ class RolesController extends Component
     {
         $this->roleName = '';
 
-        $this->search = '';
+        $this->searchTerm = '';
         $this->selected_id = 0;
     }
 }
