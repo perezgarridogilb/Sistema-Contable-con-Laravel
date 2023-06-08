@@ -107,5 +107,7 @@ class RolesController extends Component
 
         $this->searchTerm = '';
         $this->selected_id = 0;
+        /** Limpiando los errores que tengamos a través de livewire, revisar documentación */
+        $this->resetValidation();
     }
 }
