@@ -1,27 +1,33 @@
-<div class="row sales layout-top-spacing">
+<div class="row sales">
 
     <div class="col-sm-12">
+
         <div class="widget widget-chart-one">
             <div class="widget-heading">
-                <h4 class="card-title">
-                    <b>{{ $componentName }} {{ $pageTitle }}</b>
-                </h4>
+                <div class="col-sm-8">
+                    <h4 class="card-title">
+                        <b>{{$pageTitle}} de {{$componentName}}</b>
+                    </h4>
+                    @include('common.searchbox')
+                </div>
+                <div class="col-sm-4 text-center d-flex align-items-center">
                 <ul class="tabs tabs-pills">
                     <li>
-                        <a href="javascript:void(0)" class="tabmenu bg-dark" data-toggle="modal" data-target="#theModal">Agregar</a>
+                        <a href="javascript:void(0)" class="tabmenu" data-toggle="modal" data-target="#theModal" style="background-color: #343a40!important; padding: 12px 24px">Registrar</a>
                     </li>
                 </ul>
+                </div>
+
             </div>
-            @include('common.searchbox')
 
             <div class="widget-content">
                 <div class="table-responsive">
-                <table class="table-bordered table striped mt-1">
-                    <thead class="text-white" style="background: #3b3f5c;">
+                <table class="table-borderless table striped mt-1">
+                    <thead class="text-center" style="font-size: 1rem; color: black!important;">
                         <tr>
-                            <th class="table-th text-white">ID</th>
-                            <th class="table-th text-white text-center">DESCRIPCIÓN</th>
-                            <th class="table-th text-white text-center">ACCIÓN</th>
+                            <th class="table-th">Id</th>
+                            <th class="table-th text-center">Descripción</th>
+                            <th class="table-th text-center">Acción</th>
                         </tr>
                     </thead>
                     <tbody>

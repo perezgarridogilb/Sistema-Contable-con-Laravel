@@ -23,3 +23,7 @@ Ejemplo POS:
 Ejemplo productos:
 
 ![Sisema1 1](https://github.com/perezgarridogilb/Sistema-Contable-con-Laravel/assets/56992179/92309196-6762-4e5b-889f-3ec4b2a2a79d)
+
+## Primer diseño de la Base de Datos (MySQL)
+
+![Base de Datos 1](https://github.com/perezgarridogilb/Backend-projects/assets/56992179/39960901-0bd4-41e4-9999-b434cf799736)

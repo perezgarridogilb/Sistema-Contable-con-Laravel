@@ -41,9 +41,9 @@ class ProductsController extends Component
         $this->render(); // Vuelve a renderizar el componente para aplicar la búsqueda
     }
 
-    public function recargarRender1($value)
+    public function recargarRender1($value1)
     {
-        $this->banderaStock = $value;
+        $this->banderaStock = $value1;
         $this->resetPage(); // Reinicia la página de la paginación al realizar una nueva búsqueda
         $this->render(); // Vuelve a renderizar el componente para aplicar la búsqueda
     }
@@ -61,6 +61,7 @@ class ProductsController extends Component
         } else {
             $products = Product::join('categories as c', 'c.id', 'products.category_id')
                 ->select('products.*', 'c.name as category')
+                ->orderBy('products.stock', $this->banderaStock ? 'desc' : 'asc')
                 ->orderBy('products.name', $this->bandera ? 'desc' : 'asc')
                 ->paginate($this->pagination);
         }
