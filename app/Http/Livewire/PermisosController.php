@@ -9,7 +9,7 @@ use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Livewire\WithPagination;
 
-class RolesController extends Component
+class PermisosController extends Component
 {
     use WithPagination;
 
@@ -27,6 +27,12 @@ class RolesController extends Component
         $this->componentName = 'permisos';
     }
 
+    public function searchProducts()
+    {
+    $this->resetPage(); // Reinicia la página de la paginación al realizar una nueva búsqueda
+    $this->render(); // Vuelve a renderizar el componente para aplicar la búsqueda
+    }
+
     public function render()
     {
         if(strlen($this->searchTerm) > 0)
@@ -34,7 +40,7 @@ class RolesController extends Component
         else
             $permisos = Permission::orderBy('name', 'asc')->paginate($this->pagination);
 
-        return view('livewire.roles.component', [
+        return view('livewire.permisos.component', [
             'permisos' => $permisos
         ])
         ->extends('layouts.theme.app')
@@ -93,7 +99,7 @@ class RolesController extends Component
     public function Destroy($id)
     {
         /** Cantidad de roles asociados a este permiso */
-        $rolesCount = Permission::find($id)->getRolesNames->count();
+        $rolesCount = Permission::find($id)->getRoleNames()->count();
         if ($rolesCount > 0) {
             $this->emit('permiso-error', 'No se puede eliminar el permiso debido a que tiene permisos asociados.');
             return;
