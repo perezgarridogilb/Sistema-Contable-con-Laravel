@@ -23,7 +23,7 @@
                 <button href="javascript:void(0)" wire:click="recargarRender1({{ $banderaStock ? 'false' : 'true' }})" style="margin: 5px!important; padding: 5px!important;" class="btn shadow-none mtmobile lg-mr-1 mb-lg-1 mb-md-1 mb-sm-1">Por stock</button>
               </div>
             <div class="widget-content">
-                <div class="table-responsive">
+                <div class="table-responsive" style="min-width: 1150px!important;">
                 <table class="table-borderless table striped mt-1 table-responsive">
                     <thead class="text-center" style="font-size: 1rem; color: black!important;">
                         <tr>
@@ -40,9 +40,9 @@
                     <tbody>
                         @foreach ($data as $product)
                         <tr>
-                            <td class="text-left" width="15%"><h6>{{$product->name}}</h6></td>
+                            <td class="text-left" style="width: 150px;"><h6>{{$product->name}}</h6></td>
                             <td class="text-center"><h6>{{$product->barcode}}</h6></td>
-                            <td class="text-center"><h6>{{ ucwords(mb_convert_case($product->category, MB_CASE_TITLE, 'UTF-8')) }}</h6></td>
+                            <td class="text-center" style="width: 150px;"><h6>{{ ucwords(mb_convert_case($product->category, MB_CASE_TITLE, 'UTF-8')) }}</h6></td>
                             <td class="text-center"><h6>{{$product->price}}</h6></td>
                             <td class="text-center"><h6>{{$product->stock}}</h6></td>
                             <td class="text-center"><h6>{{$product->alerts}}</h6></td>

@@ -883,8 +883,8 @@ select.form-control.form-custom {
 
 .btn-dark {
   color: #fff !important;
-  background-color: #3b3f5c;
-  border-color: #3b3f5c; }
+  background-color: #343a40;
+  border-color: #343a40; }
   .btn-dark:hover, .btn-dark:focus {
     color: #fff !important;
     background-color: #3b3f5c;

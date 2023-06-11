@@ -4,9 +4,9 @@
         <div class="connect-sorting">
             <h5 class="text-center mb-3">Denominaciones</h5>
           <div class="container">
-              <div class="row">
+              <div class="row" style="">
                 @foreach ($denominations as $index => $d)
-                <div class="col-sm-4 {{ $index === count($denominations) - 1 ? ' col-sm-12' : '' }} mt-2">
+                <div class="col-sm-4 {{ $index === count($denominations) - 1 ? ' col-sm-12' : '' }} mt-2" style="padding: 10px auto 10px auto;!important;">
                     <button wire:click.prevent="ACash({{$d->value}})" class="btn btn-dark btn-block den" style="padding: 0.4375rem 0;">
                         {{ $d->value > 0 ? '$' . number_format($d->value,2, '.', '') : 'Exacto' }}
                     </button>

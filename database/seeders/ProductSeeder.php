@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Product;
+use Carbon\Carbon;
 
 class ProductSeeder extends Seeder
 {
@@ -19,6 +20,7 @@ class ProductSeeder extends Seeder
             'cost' => 35,
             'price' => 20,
             'barcode' => '89768897681',
+            'vencimiento' => Carbon::now()->addMonths(6),
             'stock' => 1000,
             'alerts' => 10,
             'category_id' => 1,
@@ -29,6 +31,7 @@ class ProductSeeder extends Seeder
             'cost' => 20,
             'price' => 50,
             'barcode' => '89768897682',
+            'vencimiento' => Carbon::now()->addMonths(6),
             'stock' => 1000,
             'alerts' => 10,
             'category_id' => 2,
@@ -39,6 +42,7 @@ class ProductSeeder extends Seeder
             'cost' => 30,
             'price' => 50,
             'barcode' => '89768897683',
+            'vencimiento' => Carbon::now()->addMonths(6),
             'stock' => 1000,
             'alerts' => 10,
             'category_id' => 3,
@@ -49,6 +53,7 @@ class ProductSeeder extends Seeder
             'cost' => 200,
             'price' => 350,
             'barcode' => '89768897684',
+            'vencimiento' => Carbon::now()->addMonths(6),
             'stock' => 1000,
             'alerts' => 10,
             'category_id' => 3,
@@ -59,6 +64,7 @@ class ProductSeeder extends Seeder
             'cost' => 60,
             'price' => 120,
             'barcode' => '89768897685',
+            'vencimiento' => Carbon::now()->addMonths(6),
             'stock' => 1000,
             'alerts' => 10,
             'category_id' => 4,
@@ -69,6 +75,7 @@ class ProductSeeder extends Seeder
             'cost' => 5,
             'price' => 20,
             'barcode' => '89768897686',
+            'vencimiento' => Carbon::now()->addMonths(6),
             'stock' => 1000,
             'alerts' => 10,
             'category_id' => 5,
@@ -79,6 +86,7 @@ class ProductSeeder extends Seeder
             'cost' => 10,
             'price' => 30,
             'barcode' => '89768897687',
+            'vencimiento' => Carbon::now()->addMonths(6),
             'stock' => 1000,
             'alerts' => 10,
             'category_id' => 6,
@@ -89,6 +97,7 @@ class ProductSeeder extends Seeder
             'cost' => 10,
             'price' => 35,
             'barcode' => '89768897688',
+            'vencimiento' => Carbon::now()->addMonths(6),
             'stock' => 1000,
             'alerts' => 10,
             'category_id' => 7,
@@ -99,6 +108,7 @@ class ProductSeeder extends Seeder
             'cost' => 30,
             'price' => 60,
             'barcode' => '89768897689',
+            'vencimiento' => Carbon::now()->addMonths(6),
             'stock' => 1000,
             'alerts' => 10,
             'category_id' => 8,
@@ -109,6 +119,7 @@ class ProductSeeder extends Seeder
             'cost' => 20,
             'price' => 50,
             'barcode' => '89768897690',
+            'vencimiento' => Carbon::now()->addMonths(6),
             'stock' => 1000,
             'alerts' => 10,
             'category_id' => 9,
