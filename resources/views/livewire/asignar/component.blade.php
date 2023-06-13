@@ -41,7 +41,7 @@
                                                 <div class="n-cleck">
                                                     <div class="new-control new checkbox checkbox-primary">
                                                         <input type="checkbox" 
-                                                        wire:change="SyncPermiso($('#p' + {{ $permiso->id }})
+                                                        wire:change="syncPermiso($('#p' + {{ $permiso->id }})
                                                         .is(':checked'), '{{ $permiso->name }}' )" 
                                                         id="p{{ $permiso->id }}"
                                                         value="{{ $permiso->id}} "
@@ -101,7 +101,7 @@ function Revocar() {
         confirmButtonColor: '#3B3F5C'
         }).then(function(result) {
             if (result.value) {
-                window.livewire.emit('revokeall', id)
+                window.livewire.emit('revokeall')
                 swal.close()
             }
         })

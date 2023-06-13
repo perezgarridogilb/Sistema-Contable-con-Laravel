@@ -26,14 +26,14 @@ h1, h2, h3, h4, h5, h6 {
 :focus {
   outline: none; }
 
-::-moz-selection {
+/* ::-moz-selection { */
   /* Code for Firefox */
-  color: #1b55e2;
-  background: transparent; }
+  /* color: #1b55e2;
+  background: transparent; } */
 
-::selection {
+/* ::selection {
   color: #1b55e2;
-  background: transparent; }
+  background: transparent; } */
 
 p {
   margin-top: 0;

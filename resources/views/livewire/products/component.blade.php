@@ -18,9 +18,10 @@
                 </div>
 
             </div>
-            <div class="col-3 d-flex justify-content-between">
+            <div class="col-5 d-flex justify-content-between">
                 <button href="javascript:void(0)" wire:click="recargarRender({{ $bandera ? 'false' : 'true' }})" style="margin: 5px!important; padding: 5px!important;" class="btn shadow-none mtmobile lg-mr-1 mb-lg-1 mb-md-1 mb-sm-1">Por nombre</button>
                 <button href="javascript:void(0)" wire:click="recargarRender1({{ $banderaStock ? 'false' : 'true' }})" style="margin: 5px!important; padding: 5px!important;" class="btn shadow-none mtmobile lg-mr-1 mb-lg-1 mb-md-1 mb-sm-1">Por stock</button>
+                <button href="javascript:void(0)" wire:click="recargarRender1({{ $banderaStock ? 'false' : 'true' }})" style="margin: 5px!important; padding: 5px!important;" class="btn shadow-none mtmobile lg-mr-1 mb-lg-1 mb-md-1 mb-sm-1">Por fecha</button>
               </div>
             <div class="widget-content">
                 <div class="table-responsive" style="min-width: 1150px!important;">
@@ -73,11 +74,12 @@
                         @endforeach
                     </tbody>
                 </table>
-                <div class="d-flex justify-content-center">
-                    <nav class="text-center">
-                        {{ $data->links() }}
-                    </nav>
-                </div>
+
+            </div>
+            <div class="d-flex justify-content-center">
+                <nav class="text-center">
+                    {{ $data->links() }}
+                </nav>
             </div>
             </div>
         </div>

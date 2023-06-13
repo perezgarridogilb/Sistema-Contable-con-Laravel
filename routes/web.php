@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\AsignarController;
 use App\Http\Livewire\CategoriesController;
 use App\Http\Livewire\CoinsController;
 use App\Http\Livewire\ProductsController;
@@ -33,3 +34,4 @@ Route::get('coins', CoinsController::class);
 Route::get('pos', PosController::class);
 Route::get('roles', RolesController::class);
 Route::get('permisos', PermisosController::class);
+Route::get('asignar', AsignarController::class);

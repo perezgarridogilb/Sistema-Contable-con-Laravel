@@ -56,7 +56,8 @@ class ProductsController extends Component
                         ->where('products.name','like', '%' .$this->searchTerm . '%')
                         ->orWhere('products.barcode','like', '%' .$this->searchTerm . '%')
                         ->orWhere('c.name','like', '%' .$this->searchTerm . '%')
-                        ->orderBy('products.name', 'asc')
+                        ->orderBy('products.stock', $this->banderaStock ? 'desc' : 'asc')
+                        ->orderBy('products.name', $this->bandera ? 'desc' : 'asc')
                         ->paginate($this->pagination);
         } else {
             $products = Product::join('categories as c', 'c.id', 'products.category_id')
