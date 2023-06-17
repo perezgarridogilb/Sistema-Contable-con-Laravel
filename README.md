@@ -3,6 +3,8 @@ Este sistema fue inspirado en ventaslite, sin embargo, incluye mejoras profundas
 
 ## Sistema de autenticación
 - Descarga
+
+**Bibliotecas**:
 `composer require spatie/laravel-permission`
 
 `php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"`
