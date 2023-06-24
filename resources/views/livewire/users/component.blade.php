@@ -22,8 +22,8 @@
                             <th class="table-th text-white">USUARIO</th>
                             <th class="table-th text-white text-center">TELÉFONO</th>
                             <th class="table-th text-white text-center">EMAIL</th>
-                            <th class="table-th text-white text-center">PERFIL</th>
                             <th class="table-th text-white text-center">ESTATUS</th>
+                            <th class="table-th text-white text-center">PERFIL</th>
                             <th class="table-th text-white text-center">IMAGEN</th>
                             <th class="table-th text-white text-center">ACTIONS</th>
                         </tr>
@@ -31,12 +31,13 @@
                     <tbody>
                         @foreach ($data as $r)
                         <tr>
-                            <td><h6>{{Category Name}}</h6></td>
+                            <td><h6>{{ $r->name }}</h6></td>
                             <td class="text-center"><h6>{{$r->phone}}</h6></td>
                             <td class="text-center"><h6>{{$r->email}}</h6></td>
                             <td class="text-center {{ $r->status == 'Active' ? 'badge-success' : 'badge-danger' }}">
-                                <span>{{ $r->profile }}</span>
+                                <span>{{ $r->status }}</span>
                             </td>
+                            <td class="text-center text-uppercase"><h6>{{$r->profile}}</h6></td>
                             <td class="text-center">
                                 <span>
                                     @if ($r->image != null)

@@ -3,7 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\User;
-use Spatie\Permission\Contracts\Role;
+use Spatie\Permission\Models\Role;
 
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
@@ -15,7 +15,7 @@ class UsersController extends Component
     use WithFileUploads;
 
     public $name, $phone, $email, $status, $image, $password, $selected_id, $profile;
-    public $pageTitle, $componentName, $search;
+    public $pageTitle, $componentName, $searchTerm;
     private $pagination = 3;
 
 public function paginationView() {
@@ -32,8 +32,8 @@ public function mount() {
 
 public function render()
     {
-        if (strlen($this->search)>0) {
-            $data = User::where('name', 'like', '%' . $this->search . '%')
+        if (strlen($this->searchTerm)>0) {
+            $data = User::where('name', 'like', '%' . $this->searchTerm . '%')
             ->select('*')->orderBy('name', 'asc')->paginate($this->pagination);
         } else {
             $data = User::select('*')->orderBy('name', 'asc')->paginate($this->pagination);
@@ -46,16 +46,26 @@ public function render()
         ->section('content');
 }
 
+public function searchProducts()
+{
+$this->resetPage(); // Reinicia la página de la paginación al realizar una nueva búsqueda
+$this->render(); // Vuelve a renderizar el componente para aplicar la búsqueda
+}
+
+
 public function resetUI() {
         $this->name = '';
         $this->email = '';
         $this->password = '';
         $this->phone = '';
         $this->image = '';
-        $this->search = '';
+        $this->searchTerm = '';
         $this->status = 'Elegir';
 
         $this->selected_id = 0;
+
+        $this->resetValidation();
+        $this->resetPage();
 }
 
     public function edit(User $user) {
