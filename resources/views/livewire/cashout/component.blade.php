@@ -40,14 +40,62 @@
                         <button wire:click.prevent="Consultar" type="button" class="btn btn-dark">Consultar</button>
                             
                         @endif
-@if ($total > 0)
-<button wire:click prevent="Print()" type="button" class="btn btn-dark">Imprimir</button>
+                        @if ($total > 0)
+                        <button wire:click prevent="Print()" type="button" class="btn btn-dark">Imprimir</button>
     
-@endif
+                        @endif
                     </div>
 
                 </div>
             </div>
+            <div class="row mt-5">
+                <div class="col-sm-12 col-md-4 mbmobile">
+                    <div class="connect-sorting bg-dark">
+                        <h5 class="text-white">Ventas totales: ${{ number_format($total, 2) }}</h5>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-8">
+                    <div class="table-responsive">
+                    <div class="table table-bordered table-striped mt-1">
+                        <thead class="text-white" style="background: #3B3FF5">
+                        <tr>
+                            <th class="table-th text-center text-white">FOLIO</th>
+                            <th class="table-th text-center text-white">TOTAL</th>
+                            <th class="table-th text-center text-white">ITEMS</th>
+                            <th class="table-th text-center text-white">FECHA</th>
+                            <th class="table-th text-center text-white"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            @if ($total <= 0)
+                                <tr><td colspan="4"><h6 class="text-center">No hay ventas en la fecha seleccionada.</h6></td></tr>
+                            @endif
+
+                            @foreach ($sales as $row)
+                                <tr>
+                                    <td class="text-center"><h6>{{ $row->id }}</h6></td>
+                                    <td class="text-center"><h6>{{ number_format($row->total, 2) }}</h6></td>
+                                    <td class="text-center"><h6>{{ $row->items }}</h6></td>
+                                    <td class="text-center"><h6>{{ $row->created_at }}</h6></td>
+                                    <td class="text-center"><button wire:click.prevent="viewDetails({{ $row }})" class="btn btn-dark btn-sm">
+                                    {{-- insertar icono --}}
+                                    </button></td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </div>
+                </div>
+                </div>
+            </div>
         </div>
     </div>
+    @include('livewire.cashout.modalDetails')
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        window.livewire.on('show-modal', Msg => {
+            $('#modal-details').modal('show')
+        })
+    })
+</script>
