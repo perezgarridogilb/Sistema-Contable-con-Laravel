@@ -9,5 +9,5 @@ class Sale extends Model
 {
     use HasFactory;
 
-    protected $filable = ['total', 'items', 'cash', 'change', 'status', 'user_id'];
+    protected $fillable = ['total', 'items', 'cash', 'change', 'status', 'user_id'];
 }

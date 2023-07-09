@@ -1,4 +1,4 @@
-<div class="roe sales layout-top-spcing">
+<div class="row sales layout-top-spacing">
     <div class="col-sm-12">
         <div class="widget widget-chart-one">
             <div class="widget-heading">
@@ -7,13 +7,13 @@
 
             <div class="widget-content">
                 <div class="row">
-                    <div class="col-sm-12 col-ms-3">
+                    <div class="col-sm-12 col-md-3">
                         <div class="form-group">
                             <label>Usuario</label>
-                            <select wire:model="userid">
+                            <select wire:model="userid" class="form-control">
                                 <option value="0" disabled>Elegir</option>
                                 @foreach ($users as $u)
-                                   <option value="{{ $u->id }}">{{ $u->name }}</option> 
+                                <option value="{{ $u->id }}">{{ $u->name }}</option>
                                 @endforeach
                             </select>
                             @error('userid') <span class="text-danger">{{ message }}</span> @enderror
@@ -52,39 +52,40 @@
                 <div class="col-sm-12 col-md-4 mbmobile">
                     <div class="connect-sorting bg-dark">
                         <h5 class="text-white">Ventas totales: ${{ number_format($total, 2) }}</h5>
+                        <h5 class="text-white">Artículos: {{$items}}</h5>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-8">
                     <div class="table-responsive">
-                    <div class="table table-bordered table-striped mt-1">
-                        <thead class="text-white" style="background: #3B3FF5">
-                        <tr>
-                            <th class="table-th text-center text-white">FOLIO</th>
-                            <th class="table-th text-center text-white">TOTAL</th>
-                            <th class="table-th text-center text-white">ITEMS</th>
-                            <th class="table-th text-center text-white">FECHA</th>
-                            <th class="table-th text-center text-white"></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            @if ($total <= 0)
+                        <table class="table table-bordered table-striped mt-1">
+                            <thead class="text-white" style="background: #3B3FF5">
+                                <tr>
+                                    <th class="table-th text-center text-white">FOLIO</th>
+                                    <th class="table-th text-center text-white">TOTAL</th>
+                                    <th class="table-th text-center text-white">ITEMS</th>
+                                    <th class="table-th text-center text-white">FECHA</th>
+                                    <th class="table-th text-center text-white"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if ($total <= 0)
                                 <tr><td colspan="4"><h6 class="text-center">No hay ventas en la fecha seleccionada.</h6></td></tr>
-                            @endif
+                                @endif
 
-                            @foreach ($sales as $row)
+                                @foreach ($sales as $row)
                                 <tr>
                                     <td class="text-center"><h6>{{ $row->id }}</h6></td>
                                     <td class="text-center"><h6>{{ number_format($row->total, 2) }}</h6></td>
                                     <td class="text-center"><h6>{{ $row->items }}</h6></td>
                                     <td class="text-center"><h6>{{ $row->created_at }}</h6></td>
-                                    <td class="text-center"><button wire:click.prevent="viewDetails({{ $row }})" class="btn btn-dark btn-sm">
-                                    {{-- insertar icono --}}
+                                    <td class="text-center">                                        <button wire:click.prevent="viewDetails({{$row}})" class="btn btn-dark btn-sm">
+                                        <i class="fas fa-list"></i>
                                     </button></td>
                                 </tr>
-                            @endforeach
-                        </tbody>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
-                </div>
                 </div>
             </div>
         </div>
@@ -93,8 +94,8 @@
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        window.livewire.on('show-modal', Msg => {
+    document.addEventListener('DOMContentLoaded', function(){
+        window.livewire.on('show-modal', Msg=> {
             $('#modal-details').modal('show')
         })
     })

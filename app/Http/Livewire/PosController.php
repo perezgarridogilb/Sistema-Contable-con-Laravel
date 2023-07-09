@@ -212,7 +212,7 @@ class PosController extends Component
             if ($sale) {
                 $items = Cart::getContent();
                 foreach($items as $item) {
-                    SaleDetail::create([
+                    SaleDetails::create([
                         'price' => $item->price,
                         'quantity' => $item->quantity,
                         'product_id' => $item->id,

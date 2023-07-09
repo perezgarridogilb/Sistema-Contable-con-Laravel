@@ -9,6 +9,12 @@ Este sistema fue inspirado en ventaslite, sin embargo, incluye mejoras profundas
 
 `php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"`
 
+- DOMPDF
+`composer require barryvdh/laravel-dompdf`
+
+- Laravel Excel
+`composer require maatwebsite/excel && php artisan vendor:publish --provider="Maatwebsite\Excel\ExcelServiceProvider" --tag=config`
+
 `php artisan optimize:clear`
 `php artisan config:clear`
 - Migraciones
