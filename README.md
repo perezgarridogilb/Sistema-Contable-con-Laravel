@@ -20,6 +20,10 @@ Este sistema fue inspirado en ventaslite, sin embargo, incluye mejoras profundas
 - Migraciones
 `php artisan migrate`
 
+**Plugins**
+- flatpickr (se usó para el tema de caledarios en el front-end)
+
+
 Referencia: https://spatie.be/docs/laravel-permission/v5/installation-laravel
 
 ## Imágenes
