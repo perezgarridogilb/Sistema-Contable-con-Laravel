@@ -104,3 +104,62 @@
     </div>
     @include('livewire.reports.sales-detail')
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  flatpickr(document.getElementByClassName('flatpickr'), {
+    enableTime: false,
+    dateFormat: 'Y-m-d',
+    locale: {
+      firstDayofWeek: 1,
+      weekdays: {
+        shorthand: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
+        longhand: [
+          "Domingo",
+          "Lunes",
+          "Martes",
+          "Miércoles",
+          "Jueves",
+          "Viernes",
+          "Sábado",
+        ],
+      },
+      months: {
+        shorthand: [
+          "Ene",
+          "Feb",
+          "Mar",
+          "Abr",
+          "May",
+          "Jun",
+          "Jul",
+          "Ago",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dic",
+        ],
+        longhand: [
+          "Enero",
+          "Febrero",
+          "Marzo",
+          "Abril",
+          "Mayo",
+          "Junio",
+          "Julio",
+          "Agosto",
+          "Septiembre",
+          "Octubre",
+          "Noviembre",
+          "Diciembre",
+        ],
+      },
+
+    }
+  })
+  /** Eventos */
+  window.livewire.on('show-modal', Msg => {
+            $('#modalDetails').modal('show')
+        })
+})
+</script>
