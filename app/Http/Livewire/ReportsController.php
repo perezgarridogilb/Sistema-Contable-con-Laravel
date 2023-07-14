@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Sale;
 use Carbon\Carbon;
 use Livewire\Component;
 
@@ -37,6 +38,11 @@ class ReportsController extends Component
         } else {
             $from = Carbon::parse($this->dateFrom)->format('Y-m-d') . ' 00:00:00';
             $to = Carbon::parse($this->dateTo)->format('Y-m-d') . ' 23:59:59';
+        }
+
+        if ($this->userId == 0) {
+            $this->data = Sale::join('users as u', 'u.id', 'sales.user_id')
+            ->select();
         }
     }
 }
