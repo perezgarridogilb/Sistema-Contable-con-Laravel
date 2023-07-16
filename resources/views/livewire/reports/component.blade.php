@@ -13,7 +13,7 @@
                             <div class="col-sm-12">
                                 <h6>Elige el usuario</h6>
                                 <div class="form-group">
-                                    <select class="form-control">
+                                    <select wire:model="userId" class="form-control">
                                         <option value="0">Todos</option>
                                         @foreach ($users as $user)
                                             <option value="{{ $user->id }}">{{ $user->name }}</option>
@@ -25,7 +25,7 @@
                             <div class="col-sm-12">
                                 <h6>Elige el tipo de reporte</h6>
                                 <div class="form-group">
-                                    <select class="form-control">
+                                    <select wire:model="reportType" class="form-control">
                                         <option value="0">Ventas por día</option>
                                         <option value="1">Ventas por fecha</option>
                                     </select>
@@ -48,8 +48,11 @@
                                     Consultar
                                 </button>
                                 {{-- construyendo la url con los parámetros --}}
-                                <a class="btn.btn-dark.btn-block {{ count($data) < 1 ? 'disabled' : ''}}" href="{{ url('report/pdf' . '/' . $userId . '/' . $reportType . '/' . $dateFrom . '/' . $dateTo) }}" target="_blank">Generar PDF</a>
-                                <a class="btn.btn-dark.btn-block {{ count($data) < 1 ? 'disabled' : ''}}" href="{{ url('report/excel' . '/' . $userId . '/' . $reportType . '/' . $dateFrom . '/' . $dateTo) }}" target="_blank">Exportar a Excel</a>
+                                <a class="btn btn-dark btn-block {{count($data) <1 ? 'disabled' : '' }}" 
+                                href="{{ url('report/pdf' . '/' . $userId . '/' . $reportType . '/' . $dateFrom . '/' . $dateTo) }}" target="_blank">Generar PDF</a>
+
+                                <a  class="btn btn-dark btn-block {{count($data) <1 ? 'disabled' : '' }}" 
+                                href="{{ url('report/excel' . '/' . $userId . '/' . $reportType . '/' . $dateFrom . '/' . $dateTo) }}" target="_blank">Exportar a Excel</a>
                             </div>
                         </div>
                     </div>
@@ -76,8 +79,8 @@
                         @endif
                         @foreach ($data as $d)
                         <tr>
-                            <td class="text-center" style="height: 95px!important;"><h6>{{ ucwords(mb_convert_case($d->id, MB_CASE_TITLE, 'UTF-8')) }}</h6></td>
-                            <td class="text-center" style="height: 95px!important;"><h6>{{ number_format($d->total, total) }}</h6></td>
+                            <td class="text-center" style="height: 95px!important;"><h6>{{ $d->id }}</h6></td>
+                            <td class="text-center" style="height: 95px!important;"><h6>{{ number_format($d->total, 2) }}</h6></td>
                             <td class="text-center" style="height: 95px!important;"><h6>{{ $d->items }}</h6></td>
                             <td class="text-center" style="height: 95px!important;"><h6>{{ $d->status }}</h6></td>
                             <td class="text-center" style="height: 95px!important;"><h6>{{ $d->user }}</h6></td>
@@ -107,7 +110,7 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-  flatpickr(document.getElementByClassName('flatpickr'), {
+  flatpickr(document.getElementsByClassName('flatpickr'), {
     enableTime: false,
     dateFormat: 'Y-m-d',
     locale: {

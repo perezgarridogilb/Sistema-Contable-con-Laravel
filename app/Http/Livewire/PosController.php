@@ -43,12 +43,14 @@ class PosController extends Component
         $this->change = ($this->efectivo - $this->total);
     }
 
-    protected $listeners = [
-        'scan-code' => 'ScanCode',
-        'removeItem' => 'removeItem',
-        'clearCart' => 'clearCart',
-        'saveSale' => 'saveSale'
-    ];
+	protected $listeners = [
+		'scan-code'  =>  'ScanCode',
+		'removeItem' => 'removeItem',
+		'clearCart'  => 'clearCart',
+		'saveSale'   => 'saveSale',
+		'refresh' => '$refresh',
+		'scan-code-byid' => 'ScanCodeById'
+	];
 
     public function ScanCode($barcode, $cant = 1)
     {

@@ -13,6 +13,7 @@
                         <thead class="text-center" style="font-size: 1rem; color: black!important;">
                             <tr>
                                 <th class="table-th text-center">Folio</th>
+                                <th class="table-th text-center">DD</th>
                                 <th class="table-th text-center">Producto</th>
                                 <th class="table-th text-center">Precio</th>
                                 <th class="table-th text-center">Cant</th>
@@ -22,19 +23,20 @@
                         <tbody>
                             @foreach ($details as $d)
                             <tr>
-                                <td style="height: 95px!important;"><h6>{{ ucwords(mb_convert_case($category->name, MB_CASE_TITLE, 'UTF-8')) }}</h6></td>
+                                
                                 
                                 <td class="text-center">
                                     <h6>{{ $d->id }}</h6>
                                             
                                 </td>
-                                <td><h6>{{ $d->product }}</h6></td>
                                 <td><h6>{{ number_format ($d->id, 2) }}</h6></td>
-                                <td><h6>{{ number_format ($d->id, 0) }}</h6></td>
-                                <td><h6>{{ number_format ($d->id * $d->quantity, 2) }}</h6></td>
+                                <td class='text-center'><h6>{{$d->product}}</h6></td>
+                                <td class='text-center'><h6>{{number_format($d->price,2)}}</h6></td>
+                                <td class='text-center'><h6>{{number_format($d->quantity,0)}}</h6></td>
+                                <td class='text-center'><h6>{{number_format($d->price * $d->quantity,2)}}</h6></td>               
                                
 
-                                @endif
+                              
                             </tr>
                             @endforeach
                         </tbody>
@@ -47,11 +49,6 @@
                             </tr>
                         </tfoot>
                     </table>
-                    <div class="d-flex justify-content-center">
-                        <nav class="text-center">
-                            {{ $categories->links() }}
-                        </nav>
-                    </div>
                 </div>
             </div>
             <div class="modal-footer">
