@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ExportController;
 use App\Http\Livewire\AsignarController;
 use App\Http\Livewire\CashoutController;
 use App\Http\Livewire\CategoriesController;
@@ -50,3 +51,5 @@ Route::get('report/pdf/{user}/{type}/{f1}/{f2}', [ExportController::class, 'repo
 /** Reportes Excel
  *  Fecha inicio, fecha final 
  * */
+Route::get('report/excel/{user}/{type}', [ExportController::class, 'reporteExcel']);
+Route::get('report/excel/{user}/{type}/{f1}/{f2}', [ExportController::class, 'reporteExcel']);

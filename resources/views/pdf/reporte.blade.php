@@ -22,12 +22,12 @@
 		<table cellpadding="0" cellspacing="0" width="100%">
 			<tr>
 				<td colspan="2" class="text-center">
-					<span style="font-size: 25px; font-weight: bold;">Sistema contable</span>
+					<span style="font-size: 25px; font-weight: bold;">Sistema LWPOS</span>
 				</td>
 			</tr>
 			<tr>
 				<td width="30%" style="vertical-align: top; padding-top: 10px; position: relative">
-					<img src="{{ asset('assets/img/livewire_logo.png') }}" alt="" class="invoice-logo">
+					<img src="{{ public_path('livewire_logo.png') }}" alt="" class="invoice-logo">
 				</td>
 
 				<td width="70%" class="text-left text-company" style="vertical-align: top; padding-top: 10px">
@@ -100,7 +100,7 @@
 					<span>Sistema contable</span>
 				</td>
 				<td width="60%" class="text-center">
-					perezgarridogilb.hithub.io
+					perezgarridogilb.githu.io
 				</td>
 				<td class="text-center" width="20%">
 					página <span class="pagenum"></span>				
