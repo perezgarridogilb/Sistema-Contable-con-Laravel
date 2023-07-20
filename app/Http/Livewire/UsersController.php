@@ -122,6 +122,9 @@ public function resetUI() {
 
         ]);
 
+        /** Los usuaruos pueden tener máximo un rol */
+        $user->syncRoles($this->profile);
+
         if ($this->image) {
             $customFileName = uniqid() . '_.' . $this->image->extension();
             $this->image->storeAs('public/users', $customFileName);
@@ -133,58 +136,65 @@ public function resetUI() {
         $this->emit('user-added', 'Usuario registrado');
     }
 
-    public function Update($param) {
-        
-            $rules = [
+    public function Update()
+    {
+    
+        $rules =[
             'email' => "required|email|unique:users,email,{$this->selected_id}",
-            'name' => 'required|min:3',
+            'name' => 'required|min:3',    
             'status' => 'required|not_in:Elegir',
-            'profile' => 'required|not_in:Elegir',
-            'password' => 'required|min:3'
+            'profile' => 'required|not_in:Elegir'
         ];
-
-        $messages = [
+    
+        $messages =[
             'name.required' => 'Ingresa el nombre',
-            'name.min' => 'El nombre del usuario debe tener al menos tres caracteres.',
-            'email.required' => 'Ingresa el correo.',
-            'email.email' => 'Ingresa un correo válido.',
-            'email.unique' => 'El email ya existe en sistema.',
-            'status.required' => 'Selecciona el estatus del usuario.',
-            'status.not_in' => 'Selecciona el estatus.',
-            'profile.required' => 'Seleciona el perfil/role del usuario.',
-            'prodile.not_in' => 'Selecciona un perfil/role distinto a Elegir',
-            'password.required' => 'Ingresa el password',
-            'password.min' => 'El password debe tener al menos tres caracteres.',
+            'name.min' => 'El nombre del usuario debe tener al menos 3 caracteres',
+            'email.required' => 'Ingresa el correo ',
+            'email.email' => 'Ingresa un correo válido',
+            'email.unique' => 'El email ya existe en sistema',
+            'status.required' => 'Selecciona el estatus del usuario',
+            'status.not_in' => 'Selecciona el estatus',
+            'profile.required' => 'Selecciona el perfil/role del usuario',
+            'profile.not_in' => 'Selecciona un perfil/role distinto a Elegir'
         ];
-        
+    
         $this->validate($rules, $messages);
-
+    
         $user = User::find($this->selected_id);
         $user->update([
             'name' => $this->name,
             'email' => $this->email,
             'phone' => $this->phone,
-            'profile' => $this->status,
-            'password' => bcrypt($this->password)
+            'status' => $this->status,
+            'profile' => $this->profile,
+            'password' => strlen($this->password) > 0 ? bcrypt($this->password) : $user->password
         ]);
-
-        if ($this->image) {
-            $customFileName = uniqid() . '_.' . $this->image->extension();
+        
+        $user->syncRoles($this->profile);
+    
+    
+        if($this->image) 
+        {
+            $customFileName = uniqid() . ' _.' . $this->image->extension();
             $this->image->storeAs('public/users', $customFileName);
             $imageTemp = $user->image;
-
+    
             $user->image = $customFileName;
             $user->save();
-
-            if ($imageTemp != null) {
-                if (file_exists('storage/users/' . $imageTemp)) {
+    
+            if($imageTemp !=null) 
+            {
+                if(file_exists('storage/users/' . $imageTemp)) {
                     unlink('storage/users/' . $imageTemp);
                 }
             }
+    
+    
         }
-
+    
         $this->resetUI();
-        $this->emit('user-updated', 'El usuario se ha actualizado');
+        $this->emit('user-updated','Usuario Actualizado');
+    
     }
 
     public function destroy(User $user) {
