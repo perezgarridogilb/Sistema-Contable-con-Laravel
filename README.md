@@ -7,6 +7,8 @@ Este sistema fue inspirado en ventaslite, sin embargo, incluye mejoras profundas
 **Bibliotecas**:
 `composer require spatie/laravel-permission`
 
+Se usaron dos clases de middlewares
+
 `php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"`
 
 - DOMPDF
