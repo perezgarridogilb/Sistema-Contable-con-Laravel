@@ -12,9 +12,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Livewire\Component;
+use App\Traits\CartTrait;
 
 class PosController extends Component
 {
+    use CartTrait;
+
     public $total, $itemsQuantity, $efectivo, $change;
 
     public function mount()
@@ -54,134 +57,33 @@ class PosController extends Component
 
     public function ScanCode($barcode, $cant = 1)
     {
-        $product = Product::where('barcode', $barcode)->first();
-
-        if ($product == null || empty($product)) {
-            $this->emit('scan-notfound', 'El producto no está registrado');
-        } else {
-            if ($this->inCart($product->id)) {
-                $this->increaseQty($product->id);
-                return;
-            }
-            if ($product->stock < 1) {
-                $this->emit('no-stock', 'Stock no suficiente');
-                return;
-            }
-            Cart::add($product->id, $product->name, $product->price, $cant, $product->imagen);
-            $this->total = Cart::getTotal();
-            $this->itemsQuantity = Cart::getTotalQuantity();
-            $this->emit('scan-ok', 'Producto agregado');
-        }
-    }
-    /** Validar si ya existe en el carrito */
-    public function inCart($productId)
-    {
-        $exist = Cart::get($productId);
-        if ($exist) {
-            return true;
-        } else {
-            return false;
-        }
-        
+        $this->ScanearCode($barcode, $cant);
     }
 
-    public function increaseQty($productId, $cant = 1)
+    public function increaseQty(Product $product, $cant = 1)
     {
-        $title = '';
-        $product = Product::find($productId);
-        $exist = Cart::get($productId);
-        if ($exist) {
-            $title = 'Cantidad actualizada';
-        } else {
-            $title = 'Producto agregado';
-        }
-
-        if ($exist) {
-            if ($product->stock < ($cant + $exist->quantity)) {
-                $this->emit('no-stock', 'Stock insuficiente');
-                return;
-            }
-        }
-
-        Cart::add($product->id, $product->name, $product->price, $cant, $product->imagen);
-
-        $this->total = Cart::getTotal();            
-        $this->itemsQuantity = Cart::getTotalQuantity();         
-        $this->emit('scan-ok', $title); 
-            
+    $this->IncreaseQuatity($product, $cant);        
     }
 
     /** Reemplazar la información del producto dentro del carrito, 
      * quita la información y la vuelve a poner */
-    public function updateQty($productId, $cant = 1)
+    public function updateQty(Product $product, $cant = 1)
     {
-        $title = '';
-        $product = Product::find($productId);
-        $exist = Cart::get($productId);
-        if ($exist) {
-            $title = 'Cantidad actualizada';
+        if ($cant <= 0) {
+            $this->removeItem($product->id);
         } else {
-            $title = 'Producto agregado';
+            $this->updateQuantity($product, $cant);
         }
-
-        if($exist) {
-            if($product->stock < $cant)
-            {
-                $this->emit('no-stock', 'Stock insuficiente');
-                return;
-            }
-        }
-
-        $this->removeItem($productId);
-
-        if ($cant > 0) {
-            Cart::add($product->id, $product->name, $product->price, $cant, $product->imagen);
-
-            $this->total = Cart::getTotal();            
-            $this->itemsQuantity = Cart::getTotalQuantity();         
-            $this->emit('scan-ok', $title); 
-        } else {
-            $this->emit('no-stock', 'Stock insuficiente');
-        }
-        
-    }
-
-    public function removeItem($productId)
-    {
-        Cart::remove($productId);
-        
-        $this->total = Cart::getTotal();
-        $this->itemsQuantity = Cart::getTotalQuantity();
-        $this->emit('scan-ok', 'Producto eliminado'); 
     }
 
     public function decreaseQty($productId)
+{
+    $this->decreaseQuantity($productId);
+}
+
+    public function clearCart()
     {
-        $item = Cart::get($productId);
-        Cart::remove($productId);
-
-        $newQty = ($item->quantity) - 1;
-
-        /** Si todavía quedan productos en el carrito */
-        if ($newQty > 0) {
-            Cart::add($item->id, $item->name, $item->price, $newQty, $item->attributes[0]);
-        }
-
-        $this->total = Cart::getTotal();
-        // getTotalQuantity
-        $this->itemsQuantity = Cart::getTotalQuantity();
-        $this->emit('scan-ok', 'Cantidad actualizada'); 
-    }
-
-    public function clearCart(Type $var = null)
-    {
-        Cart::clear();
-        $this->efectivo = 0;
-        $this->change = 0;
-        $this->total = Cart::getTotal();
-        $this->itemsQuantity = Cart::getTotalQuatity();
-
-        $this->emit('scan-ok', 'Carrito vacío');
+        $this->trashCart();
     }
 
     public function saveSale()
