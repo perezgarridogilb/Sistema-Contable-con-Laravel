@@ -23,7 +23,7 @@
     <!--  END LOADER -->
 
     <!--  BEGIN NAVBAR  -->
-     @include('layouts.theme.header')
+     {{-- @include('layouts.theme.header') --}}
     <!--  END NAVBAR  -->
 
     <!--  BEGIN MAIN CONTAINER  -->
