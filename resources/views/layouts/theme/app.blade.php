@@ -12,7 +12,7 @@
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     @include('layouts.theme.styles')
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
-    {{-- @livewireStyles --}}
+    @livewireStyles
 </head>
 <body class="dashboard-analytics">
 
@@ -23,7 +23,7 @@
     <!--  END LOADER -->
 
     <!--  BEGIN NAVBAR  -->
-     {{-- @include('layouts.theme.header') --}}
+     @include('layouts.theme.header')
     <!--  END NAVBAR  -->
 
     <!--  BEGIN MAIN CONTAINER  -->
