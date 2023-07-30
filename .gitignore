@@ -17,3 +17,5 @@ yarn-error.log
 docker-compose.yml
 /storage/debugbar
 /docker
+.fly/
+fly.toml

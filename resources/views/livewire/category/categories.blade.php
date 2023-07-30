@@ -40,7 +40,7 @@
                                 @if (!empty($category->name))
                                     <span>
                                         {{-- imagen existe por el Accesor --}}
-                                        <img src="{{ asset('storage/categorias/' . $category->imagen) }}" alt="Imagen de la categoría" alt="imagen de ejemplo" height="70" width="80" class="rounded">
+                                        <img src="{{ Storage::disk('s3')->url($category->imagen) }}" alt="Imagen de la categoría" height="70" width="80" class="rounded">
                                     </span>
                                         
                             </td>
@@ -85,6 +85,11 @@
             $('#theModal').modal('show');
         });
         window.livewire.on('category-added', msg => {
+            $('#theModal').modal('hide');
+            noty(msg)
+        })
+
+        window.livewire.on('category-added-error', msg => {
             $('#theModal').modal('hide');
             noty(msg)
         })

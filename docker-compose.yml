@@ -1,0 +1,46 @@
+# Copyright VMware, Inc.
+# SPDX-License-Identifier: APACHE-2.0
+
+version: '3.7'
+
+services:
+  mariadb:
+    image: docker.io/bitnami/mariadb:10.6
+    environment:
+      # ALLOW_EMPTY_PASSWORD is recommended only for development.
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_USER=bn_myapp
+      - MARIADB_DATABASE=bitnami_myapp
+    ports:
+      - "3306:3306"
+    networks:
+      laravel:
+        ipv4_address: 173.16.100.9
+  myapp:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - '8200:80'
+    volumes:
+      - './:/var/www'
+      - './public:/var/www/html'
+    networks:
+      laravel:
+        ipv4_address: 173.16.100.10
+    depends_on:
+      - mariadb
+volumes:
+  production:
+  database:
+networks: 
+  laravel:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      -
+        subnet: 173.16.100.0/24
+       
+
+

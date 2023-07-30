@@ -7,6 +7,8 @@ use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
+use League\Flysystem\AwsS3v3\AwsS3Adapter;
+
 
 class CategoriesController extends Component
 {
@@ -79,21 +81,32 @@ class CategoriesController extends Component
 
         $this->validate($rules, $messages);
 
+        try{
         $category = Category::create([
             'name' => $this->name
         ]);
 
         if($this->image) {
             $customFileName = uniqid() . '_.' . $this->image->extension();
-            $filePath = $this->image->storeAs('public/categorias', $customFileName);
-            $category->image = $customFileName;
+                
+            // Crea el adaptador AwsS3Adapter para guardar el archivo en AWS S3
+                $s3Adapter = new AwsS3Adapter(Storage::disk('s3')->getDriver()->getAdapter()->getClient(), env('AWS_BUCKET'));
+
+
+                $filePath = Storage::disk('s3')->putFileAs('categorias', $this->image, $customFileName, 'public');
+            
+            // Almacenar solo el nombre del archivo (sin la URL completa) en la base de datos
+            $category->image = $filePath;
             $category->save();
         }
 
         $this->resetUI();
         $this->emit('category-added', 'Categoría Registrada');
-        // $this->emit('imageUploaded');
-
+        
+        }catch(\Exception $e) {
+        $this->resetUI();
+        $this->emit('category-added-error', 'Error' . $e->getMessage());
+    }
 
     }
 
@@ -118,15 +131,16 @@ class CategoriesController extends Component
         if($this->image)
         {
             $customFileName = uniqid() . '-.' . $this->image->extension();
-            $this->image->storeAs('public/categorias', $customFileName);
+            new AwsS3Adapter(Storage::disk('s3')->getDriver()->getAdapter()->getClient(), env('AWS_BUCKET'));
+            $filePath = Storage::disk('s3')->putFileAs('categorias', $this->image, $customFileName, 'public');
             $imageName = $category->image;
 
-            $category->image = $customFileName;
+            $category->image = $filePath;
             $category->save();
 
             if($imageName != null) {
-                if(file_exists('storage/categorias' . $imageName)){
-                    unlink('storage/categorias' . $imageName);
+                if(Storage::disk('s3')->exists($imageName)){
+                    Storage::disk('s3')->delete($imageName);
                 }
             }
             
@@ -156,7 +170,7 @@ class CategoriesController extends Component
         try {
             if ($imageName != null) {
                 /** Si existe la imagen se elimina */
-                unlink('storage/categorias/' . $imageName);
+                Storage::disk('s3')->delete($category->image);
             }
         } catch (\Exception $e) {
             $this->emit('category-deleted-error', 'Ocurrió un error al eliminar la imagen');
