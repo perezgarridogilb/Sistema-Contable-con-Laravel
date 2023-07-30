@@ -25,19 +25,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Auth::routes(['register' => false]); // deshabilitamos el registro de nuevos users
 
 /** Capa intermedia entre las solicitudes HTTP y el recurso */
 Route::middleware(['auth'])->group(function () {
     Route::get('categories', CategoriesController::class)->middleware('role:Administrador');
     Route::get('products', ProductsController::class);
     Route::get('coins', CoinsController::class);
-    Route::get('pos', PosController::class);
+    Route::get('pos', PosController::class)->name('pos');
 
     Route::group(['middleware' => ['role:Administrador']], function () {
     Route::get('roles', RolesController::class);

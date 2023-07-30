@@ -15,14 +15,19 @@
         <ul class="navbar-item flex-row navbar-dropdown">
         
             <li class="nav-item dropdown user-profile-dropdown  order-lg-0 order-1 tabs">
-                <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="userProfileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <button class="btn" style="background-color: #343a40!important; padding: 12px 24px; height: 39.5px; font-size: 14px;
-                    letter-spacing: 1px;
-                    font-weight: 600;
-                    padding: 5px 7px;
-                    background: #1b55e2;
-                    color: #fff;
-                    border-radius: 4px;">Salir</button>             </a>
+                
+                <div class="dropdown-item">
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                            <polyline points="16 17 21 12 16 7"></polyline>
+                            <line x1="21" y1="12" x2="9" y2="12"></line>
+                        </svg> <span>Salir</span>
+                    </a>
+                    <form action="{{ route('logout') }}" method="POST" id="logout-form">
+                        @csrf
+                    </form>
+                </div>           
                 <div class="dropdown-menu position-absolute animated fadeInUp" aria-labelledby="userProfileDropdown">
                     <div class="user-profile-section">
                         <div class="media mx-auto">

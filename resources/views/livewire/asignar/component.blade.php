@@ -25,8 +25,8 @@
                 <div class="row mt-3">
                     <div class="col-sm-12">
                         <div class="table-responsive">
-                            <table class="table-bordered table striped mt-1">
-                                <thead class="text-white" style="background: #3b3f5c;">
+                            <table class="table-borderless table striped mt-1">
+                                <thead class="text-center" style="font-size: 1rem; color: black!important;">
                                     <tr>
                                         <th class="table-th text-white text-center">ID</th>
                                         <th class="table-th text-white text-center">PERMISO</th>
