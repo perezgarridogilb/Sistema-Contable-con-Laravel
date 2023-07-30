@@ -13,9 +13,6 @@ services:
       - MARIADB_DATABASE=bitnami_myapp
     ports:
       - "3306:3306"
-    networks:
-      laravel:
-        ipv4_address: 173.16.100.9
   myapp:
     build:
       context: ./
@@ -25,22 +22,6 @@ services:
     volumes:
       - './:/var/www'
       - './public:/var/www/html'
-    networks:
-      laravel:
-        ipv4_address: 173.16.100.10
     depends_on:
       - mariadb
-volumes:
-  production:
-  database:
-networks: 
-  laravel:
-    driver: bridge
-    ipam:
-      driver: default
-      config:
-      -
-        subnet: 173.16.100.0/24
-       
-
 
