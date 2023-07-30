@@ -12,13 +12,13 @@
 
 			<div class="modal-body">
 				<div class="table-responsive">
-                        <table class="table table-bordered table-striped mt-1">
-                            <thead class="text-white" style="background: #3B3F5C">
+					<table class="table-borderless table striped mt-1">
+						<thead class="text-center" style="font-size: 1rem; color: black!important;">
                                 <tr>
-                                    <th class="table-th text-center text-white">PRODUCTO</th>
-                                    <th class="table-th text-center text-white">CANT</th>
-                                    <th class="table-th text-center text-white">PRECIO</th>
-                                    <th class="table-th text-center text-white">IMPORTE</th>
+                                    <th class="table-th text-center">PRODUCTO</th>
+                                    <th class="table-th text-center">CANTIDAD</th>
+                                    <th class="table-th text-center">PRECIO</th>
+                                    <th class="table-th text-center">IMPORTE</th>
                                 </tr>
                             </thead>
                             <tbody>                                

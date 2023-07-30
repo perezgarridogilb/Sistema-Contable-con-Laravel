@@ -11,7 +11,7 @@
                     @include('common.searchbox')
                     @endcan
                 </div>
-                <div class="col-sm-4 text-center d-flex align-items-center">
+                <div class="col-sm-4 text-center d-flex align-items-center justify-content-center">
                 <ul class="tabs tabs-pills">
                     @can('Product_Create')   
                     <li>
@@ -27,9 +27,9 @@
                 <button href="javascript:void(0)" wire:click="recargarRender1({{ $banderaStock ? 'false' : 'true' }})" style="margin: 5px!important; padding: 5px!important;" class="btn shadow-none mtmobile lg-mr-1 mb-lg-1 mb-md-1 mb-sm-1">Por stock</button>
                 {{-- <button href="javascript:void(0)" wire:click="recargarRender1({{ $banderaStock ? 'false' : 'true' }})" style="margin: 5px!important; padding: 5px!important;" class="btn shadow-none mtmobile lg-mr-1 mb-lg-1 mb-md-1 mb-sm-1">Por fecha</button> --}}
               </div>
-            <div class="widget-content">
-                <div class="table-responsive" style="min-width: 1150px!important;">
-                <table class="table-borderless table striped mt-1 table-responsive">
+              <div class="widget-content">
+				<div class="table-responsive">
+					<table class="table table-less table striped mt-1">
                     <thead class="text-center" style="font-size: 1rem; color: black!important;">
                         <tr>
                             <th class="table-th text-center">Descripción</th>
@@ -85,12 +85,12 @@
                 </table>
 
             </div>
-            <div class="d-flex justify-content-center">
-                <nav class="text-center">
-                    {{ $data->links() }}
-                </nav>
-            </div>
-            </div>
+        </div>
+        <div class="d-flex align-items-center justify-content-center">
+            <nav class="text-center">
+                {{ $data->links() }}
+            </nav>
+        </div>
         </div>
     </div>
 

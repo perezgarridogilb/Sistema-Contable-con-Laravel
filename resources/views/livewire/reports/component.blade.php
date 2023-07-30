@@ -3,7 +3,7 @@
     <div class="col-sm-12">
         <div class="widget">
             <div class="widget-heading">
-                <div class="card-title text-center"><b>{{ $componentName }}</b></div>
+                <h4 class="card-title text-center"><b>{{ $componentName }}</b></h4>
             </div>
 
             <div class="widget-content">
@@ -44,9 +44,9 @@
                                 </div>
                             </div>
                             <div class="col-sm-12">
-                                <button wire:click="$refresh" class="btn btn-dark btn-block">
+{{--                                 <button wire:click="$refresh" class="btn btn-dark btn-block">
                                     Consultar
-                                </button>
+                                </button> --}}
                                 {{-- construyendo la url con los parámetros --}}
                                 <a class="btn btn-dark btn-block {{count($data) <1 ? 'disabled' : '' }}" 
                                 href="{{ url('report/pdf' . '/' . $userId . '/' . $reportType . '/' . $dateFrom . '/' . $dateTo) }}" target="_blank">Generar PDF</a>

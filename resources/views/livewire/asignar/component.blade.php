@@ -68,8 +68,6 @@
             </div>
         </div>
     </div>
-
-    Include Form
 </div>
 
 <script>
