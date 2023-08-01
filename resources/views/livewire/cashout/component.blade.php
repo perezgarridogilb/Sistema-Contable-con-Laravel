@@ -57,14 +57,14 @@
                 </div>
                 <div class="col-sm-12 col-md-8">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-striped mt-1">
-                            <thead class="text-white" style="background: #3B3FF5">
+                        <table class="table-borderless table striped mt-1">
+                            <thead class="text-center" style="font-size: 1rem; color: black!important;">
                                 <tr>
-                                    <th class="table-th text-center text-white">FOLIO</th>
-                                    <th class="table-th text-center text-white">TOTAL</th>
-                                    <th class="table-th text-center text-white">ITEMS</th>
-                                    <th class="table-th text-center text-white">FECHA</th>
-                                    <th class="table-th text-center text-white"></th>
+                                    <th class="table-th text-center">FOLIO</th>
+                                    <th class="table-th text-center">TOTAL</th>
+                                    <th class="table-th text-center">ITEMS</th>
+                                    <th class="table-th text-center">FECHA</th>
+                                    <th class="table-th text-center"></th>
                                 </tr>
                             </thead>
                             <tbody>

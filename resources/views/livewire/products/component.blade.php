@@ -54,7 +54,7 @@
                             <td class="text-center">
                                 <span>
                                     {{-- de image a imagen, ya que es accessor --}}
-                                    <img src="{{ asset('storage/products/' .  $product->imagen)}}" alt="imagen de ejemplo" height="70" width="80" class="rounded">
+                                    <img wire:click.prevent="ScanCode('{{$product->barcode}}')" src="{{ asset('storage/products/' .  $product->imagen)}}" alt="imagen de ejemplo" height="70" width="80" class="rounded">
                                 </span>
                             </td>
                             <td class="text-center">

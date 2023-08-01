@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Traits\CartTrait;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
@@ -12,9 +13,17 @@ class ProductsController extends Component
 {
     use WithPagination;
     use WithFileUploads;
+    use CartTrait;
+
     public $name, $barcode, $cost, $price, $stock, $alerts, $categoryid, $searchTerm, $image, $selected_id, $pageTitle, $componentName;
     public $bandera = false, $banderaStock = false;
     private $pagination = 5;
+    
+    public function ScanCode($code) {
+        $this->ScanearCode($code);
+        /** Vigilando desde scripts del template para que sea visible a lo largo de todo el proyecto */
+        $this->emit('global-msg', "Se agregó el producto al carrito");
+    }
 
     public function paginationView()
     {
