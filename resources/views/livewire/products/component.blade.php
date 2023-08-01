@@ -11,7 +11,7 @@
                     @include('common.searchbox')
                     @endcan
                 </div>
-                <div class="col-sm-4 text-center d-flex align-items-center justify-content-center">
+                <div class="col-sm-4 text-center d-flex align-items-center">
                 <ul class="tabs tabs-pills">
                     @can('Product_Create')   
                     <li>
@@ -22,14 +22,14 @@
                 </div>
 
             </div>
-            <div class="col-3 d-flex justify-content-between">
+            <div class="col-5 d-flex justify-content-between">
                 <button href="javascript:void(0)" wire:click="recargarRender({{ $bandera ? 'false' : 'true' }})" style="margin: 5px!important; padding: 5px!important;" class="btn shadow-none mtmobile lg-mr-1 mb-lg-1 mb-md-1 mb-sm-1">Por nombre</button>
                 <button href="javascript:void(0)" wire:click="recargarRender1({{ $banderaStock ? 'false' : 'true' }})" style="margin: 5px!important; padding: 5px!important;" class="btn shadow-none mtmobile lg-mr-1 mb-lg-1 mb-md-1 mb-sm-1">Por stock</button>
-                {{-- <button href="javascript:void(0)" wire:click="recargarRender1({{ $banderaStock ? 'false' : 'true' }})" style="margin: 5px!important; padding: 5px!important;" class="btn shadow-none mtmobile lg-mr-1 mb-lg-1 mb-md-1 mb-sm-1">Por fecha</button> --}}
+                <button href="javascript:void(0)" wire:click="recargarRender1({{ $banderaStock ? 'false' : 'true' }})" style="margin: 5px!important; padding: 5px!important;" class="btn shadow-none mtmobile lg-mr-1 mb-lg-1 mb-md-1 mb-sm-1">Por fecha</button>
               </div>
-              <div class="widget-content">
-				<div class="table-responsive">
-					<table class="table table-less table striped mt-1">
+            <div class="widget-content">
+                <div class="table-responsive" style="min-width: 1150px!important;">
+                <table class="table-borderless table striped mt-1 table-responsive">
                     <thead class="text-center" style="font-size: 1rem; color: black!important;">
                         <tr>
                             <th class="table-th text-center">Descripción</th>
@@ -54,7 +54,7 @@
                             <td class="text-center">
                                 <span>
                                     {{-- de image a imagen, ya que es accessor --}}
-                                    <img src="{{ asset('storage/products/' .  $product->imagen)}}" alt="imagen de ejemplo" height="70" width="80" class="rounded">
+                                    <img wire:click.prevent="ScanCode('{{$product->barcode}}')" src="{{ asset('storage/products/' .  $product->imagen)}}" alt="imagen de ejemplo" height="70" width="80" class="rounded">
                                 </span>
                             </td>
                             <td class="text-center">
@@ -85,12 +85,12 @@
                 </table>
 
             </div>
-        </div>
-        <div class="d-flex align-items-center justify-content-center">
-            <nav class="text-center">
-                {{ $data->links() }}
-            </nav>
-        </div>
+            <div class="d-flex justify-content-center">
+                <nav class="text-center">
+                    {{ $data->links() }}
+                </nav>
+            </div>
+            </div>
         </div>
     </div>
 
