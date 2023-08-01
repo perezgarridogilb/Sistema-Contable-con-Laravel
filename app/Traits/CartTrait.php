@@ -16,7 +16,7 @@ trait CartTrait {
             $this->emit('scan-notfound', 'El producto no está registrado*');
         } else {
             if ($this->InCart($product->id)) {
-                $this->IncreaseQuatity($product->id);
+                $this->IncreaseQuatity($product);
                 return;
             }
             if ($product->stock < 1) {

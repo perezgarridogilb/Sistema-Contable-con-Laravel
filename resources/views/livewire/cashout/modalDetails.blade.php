@@ -12,8 +12,8 @@
 
 			<div class="modal-body">
 				<div class="table-responsive">
-					<table class="table-borderless table striped mt-1">
-						<thead class="text-center" style="font-size: 1rem; color: black!important;">
+						<table class="table-borderless table striped mt-1">
+                            <thead class="text-center" style="font-size: 1rem; color: black!important;">
                                 <tr>
                                     <th class="table-th text-center">PRODUCTO</th>
                                     <th class="table-th text-center">CANTIDAD</th>

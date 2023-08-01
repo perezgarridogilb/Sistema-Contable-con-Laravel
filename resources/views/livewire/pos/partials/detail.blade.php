@@ -1,10 +1,23 @@
+<div class="connect-sorting mb-2"></div>
+    <div class="btn-group">
+        <button class="btn-dark mr-3">
+            <i class="fas fa-search" data-toggle="modal" data-target="#modalSearchProduct">
+            Buscar productos
+            </i>
+        </button>
+        <button wire:click="printLast" class="btn-dark mr-3">
+            <i class="fas fa-search" data-toggle="modal" data-target="#modalSearchProduct">
+            Reimprimir última F7
+            </i>
+        </button>
+    </div>
 <div class="connect-sorting">
     <div class="connect-sorting-contenct">
         <div class="card simple-title-task ui-sortable-handle">
             <div class="card-body">
                 @if ($total > 0)
                 <div class="table-responsive tblscroll" style="max-height: 650px; overflow:hidden">
-                    <table class="table-borderless table table-bordered  mt-1">
+                    <table class="table-borderless table striped mt-1">
                         <thead class="text-center" style="font-size: 1rem; color: black!important;">
                             <tr>
                                 <th width="10%">Imagen</th>
