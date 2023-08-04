@@ -4,9 +4,13 @@ namespace App\Http\Livewire;
 
 use App\Models\Category;
 use App\Models\Product;
+use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
+
+use Illuminate\Support\Facades\Storage;
+use League\Flysystem\AwsS3v3\AwsS3Adapter;
 
 class ProductsController extends Component
 {
@@ -115,14 +119,21 @@ class ProductsController extends Component
             'barcode' => $this->barcode,
             'stock' => $this->stock,
             'alerts'  => $this->alerts,
-            'category_id'  => $this->categoryid
+            'category_id'  => $this->categoryid,
         ]);
 
-        if($this->image)
-        {
+
+        if($this->image) {
             $customFileName = uniqid() . '_.' . $this->image->extension();
-            $this->image->storeAs('public/products', $customFileName);
-            $product->image = $customFileName;
+                
+            // Crea el adaptador AwsS3Adapter para guardar el archivo en AWS S3
+                $s3Adapter = new AwsS3Adapter(Storage::disk('s3')->getDriver()->getAdapter()->getClient(), env('AWS_BUCKET'));
+
+
+                $filePath = Storage::disk('s3')->putFileAs('productos', $this->image, $customFileName, 'public');
+            
+            // Almacenar solo el nombre del archivo (sin la URL completa) en la base de datos
+            $product->image = $filePath;
             $product->save();
         }
 
@@ -177,15 +188,16 @@ class ProductsController extends Component
         if($this->image)
         {
             $customFileName = uniqid() . '_.' . $this->image->extension();
-            $this->image->storeAs('public/products', $customFileName);
+            new AwsS3Adapter(Storage::disk('s3')->getDriver()->getAdapter()->getClient(), env('AWS_BUCKET'));
+            $filePath = Storage::disk('s3')->putFileAs('productos', $this->image, $customFileName, 'public');
             $imageTemp = $product->image;
-            $product->image = $customFileName;
+            $product->image = $filePath;
             $product->save();
 
             if ($imageTemp != null)
             {
-                if (file_exists('storage/products/' . $imageTemp)) {
-                    unlink('storage/products/' . $imageTemp);
+                if(Storage::disk('s3')->exists('productos/' . $imageTemp)){
+                    Storage::disk('s3')->delete('productos/' . $imageTemp);
                 }
             }
         }
@@ -229,8 +241,8 @@ class ProductsController extends Component
         $product->delete();
 
         if ($imageTemp != null) {
-            if (file_exists('storage/products/' . $imageTemp)) {
-                unlink('storage/products/' . $imageTemp);
+            if(Storage::disk('s3')->exists('productos/' . $imageTemp)){
+                Storage::disk('s3')->delete('productos/' . $imageTemp);
             }
         }
 

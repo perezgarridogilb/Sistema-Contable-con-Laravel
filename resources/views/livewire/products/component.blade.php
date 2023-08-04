@@ -54,7 +54,7 @@
                             <td class="text-center">
                                 <span>
                                     {{-- de image a imagen, ya que es accessor --}}
-                                    <img src="{{ asset('storage/products/' .  $product->imagen)}}" alt="imagen de ejemplo" height="70" width="80" class="rounded">
+                                    <img src="{{ Storage::disk('s3')->url($product->imagen) }}" alt="Imagen del producto" height="70" width="80" class="rounded">
                                 </span>
                             </td>
                             <td class="text-center">

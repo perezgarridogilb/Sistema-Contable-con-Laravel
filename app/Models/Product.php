@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Product extends Model
 {
@@ -18,7 +19,7 @@ class Product extends Model
 
     public function getImagenAttribute()
     {
-        if($this->image != null && file_exists('storage/products/' . $this->image))
+        if($this->image != null && ((Storage::disk('s3')->exists($this->image))))
         {
             return $this->image;
         } else {

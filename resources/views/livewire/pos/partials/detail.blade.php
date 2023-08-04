@@ -21,7 +21,7 @@
                                 <td class="text-center table-th">
                                     @if (count($item->attributes) > 0)                                    
                                     <span>
-                                        <img src="{{ asset('storage/products/' . $item->attributes[0])}}" alt="Imagen del producto" height="60" width="60" class="rounded">
+                                        <img src="{{ Storage::disk('s3')->url($item->attributes[0]) }}" alt="Imagen del producto" height="70" width="80" class="rounded">
                                     </span>
                                     @endif
                                 </td>
