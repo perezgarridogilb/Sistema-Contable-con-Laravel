@@ -38,7 +38,7 @@
                             <td class="text-center">
                                     <span>
                                         {{-- imagen existe por el Accesor --}}
-                                        <img src="{{ Storage::disk('s3')->url($coin->imagen) }}" alt="Imagen del producto" height="70" width="80" class="rounded">
+                                        <img src="{{ Storage::disk('s3')->url($coin->imagen) }}" alt="Imagen de la denominacion" height="70" width="80" class="rounded">
                                     </span>
                             </td>
                             <td class="text-center">

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Denomination extends Model
 {
@@ -13,9 +14,9 @@ class Denomination extends Model
 
     public function getImagenAttribute()
     {
-        if($this->image != null)
+        if($this->image != null && ((Storage::disk('s3')->exists($this->image))))
         {
-            return file_exists('storage/denominations/' . $this->image) ? 'denominations/' . $this->image : '6459bd267d2bc_.jpg';
+            return $this->image;
         } else {
             return '6459bd267d2bc_.jpg';
         }

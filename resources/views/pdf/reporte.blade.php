@@ -100,7 +100,7 @@
 					<span>Sistema contable</span>
 				</td>
 				<td width="60%" class="text-center">
-					perezgarridogilb.githu.io
+					perezgarridogilb.github.io
 				</td>
 				<td class="text-center" width="20%">
 					página <span class="pagenum"></span>				

@@ -190,14 +190,13 @@ class ProductsController extends Component
             $customFileName = uniqid() . '_.' . $this->image->extension();
             new AwsS3Adapter(Storage::disk('s3')->getDriver()->getAdapter()->getClient(), env('AWS_BUCKET'));
             $filePath = Storage::disk('s3')->putFileAs('productos', $this->image, $customFileName, 'public');
-            $imageTemp = $product->image;
+            $imageName = $product->image;
             $product->image = $filePath;
             $product->save();
 
-            if ($imageTemp != null)
-            {
-                if(Storage::disk('s3')->exists('productos/' . $imageTemp)){
-                    Storage::disk('s3')->delete('productos/' . $imageTemp);
+            if($imageName != null) {
+                if(Storage::disk('s3')->exists($imageName)){
+                    Storage::disk('s3')->delete($imageName);
                 }
             }
         }
@@ -241,8 +240,9 @@ class ProductsController extends Component
         $product->delete();
 
         if ($imageTemp != null) {
-            if(Storage::disk('s3')->exists('productos/' . $imageTemp)){
-                Storage::disk('s3')->delete('productos/' . $imageTemp);
+            if ($$imageTemp != null) {
+                /** Si existe la imagen se elimina */
+                Storage::disk('s3')->delete($denomination->image);
             }
         }
 

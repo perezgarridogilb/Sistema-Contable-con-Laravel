@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Category;
 use App\Models\Denomination;
 use Illuminate\Support\Facades\Storage;
+use League\Flysystem\AwsS3v3\AwsS3Adapter;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 
@@ -83,8 +84,15 @@ class CoinsController extends Component
 
         if($this->image) {
             $customFileName = uniqid() . '_.' . $this->image->extension();
-            $this->image->storeAs('public/denominations', $customFileName);
-            $denomination->image = $customFileName;
+                
+            // Crea el adaptador AwsS3Adapter para guardar el archivo en AWS S3
+                $s3Adapter = new AwsS3Adapter(Storage::disk('s3')->getDriver()->getAdapter()->getClient(), env('AWS_BUCKET'));
+
+
+                $filePath = Storage::disk('s3')->putFileAs('denominations', $this->image, $customFileName, 'public');
+            
+            // Almacenar solo el nombre del archivo (sin la URL completa) en la base de datos
+            $denomination->image = $filePath;
             $denomination->save();
         }
 
@@ -119,19 +127,19 @@ class CoinsController extends Component
 
         if($this->image)
         {
-            $customFileName = uniqid() . '-.' . $this->image->extension();
-            $this->image->storeAs('public/denominations', $customFileName);
-            /** Guardamos la imagen temporal */
-            $imageName = $denomination->image;
-
-            $denomination->image = $customFileName;
+            $customFileName = uniqid() . '_.' . $this->image->extension();
+            $s3Adapter = new AwsS3Adapter(Storage::disk('s3')->getDriver()->getAdapter()->getClient(), env('AWS_BUCKET'));
+            $filePath = Storage::disk('s3')->putFileAs('denominations', $this->image, $customFileName, 'public');
+            /** Imagen temporal */
+            $imageTemp = $denomination->image;
+            $denomination->image = $filePath;
             $denomination->save();
 
             /** Si tenía imagen anterior */
-            if($imageName != null) {
+            if($imageTemp != null) {
                 /** Si existe fisicamente la eliminamos */
-                if(file_exists('storage/denominations' . $imageName)){
-                    unlink('storage/denominations' . $imageName);
+                if(Storage::disk('s3')->exists($imageTemp)){
+                    Storage::disk('s3')->delete($imageTemp );
                 }
             }
             
@@ -156,13 +164,13 @@ class CoinsController extends Component
 
     public function Destroy(Denomination $denomination) {
         /* $denomination = Category::find($id); */
-        $imageName = $denomination->image; //imagen temporal
+        $imageTemp = $denomination->image; //imagen temporal
         $denomination->delete();
 
         try {
-            if ($imageName != null) {
+            if ($$imageTemp != null) {
                 /** Si existe la imagen se elimina */
-                unlink('storage/denominations/' . $imageName);
+                Storage::disk('s3')->delete($denomination->image);
             }
         } catch (\Exception $e) {
             $this->emit('item-deleted-error', 'Ocurrió un error al eliminar la imagen');

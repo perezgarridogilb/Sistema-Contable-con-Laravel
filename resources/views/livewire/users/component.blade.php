@@ -50,7 +50,7 @@
                                 </td>
                                 <td class="text-center text-uppercase">
                                     <h6>{{$r->profile}}</h6>
-                                    <small><b>Roles:</b>{{implode(',',$r->getRoleNames()->toArray())}}</small>
+                                    {{-- <small><b>Roles:</b>{{implode(',',$r->getRoleNames()->toArray())}}</small> --}}
                                 </td>
 
                                 <td class="text-center">
